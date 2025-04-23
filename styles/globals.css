@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--proxima-nova);
+  --font-display: var(--lonear);
+  --color-dark: #3d3d3d;
+  --color-primary: #f2d38a;
+}
