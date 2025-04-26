@@ -1,6 +1,12 @@
 import Arrow from "@/components/Home/Shop/Arrow";
 import Image from "next/image";
-import { Behance, Dribble, Facebook, Instagram, Linkdin } from "./SocialIcons";
+import {
+  Behance,
+  Dribble,
+  Facebook,
+  Instagram,
+  Linkdin,
+} from "../Header/SocialIcons";
 import Link from "next/link";
 
 const Footer = () => {
@@ -46,7 +52,9 @@ const Footer = () => {
                 <Link href="/term-and-condition" className="text-dark text-lg">
                   Term & Condition
                 </Link>
-                <p className="text-dark text-lg">Best Seller</p>
+                <Link href="/privacy-policy" className="text-dark text-lg">
+                  Privacy Policy
+                </Link>
                 <p className="text-dark text-lg">About</p>
                 <p className="text-dark text-lg">Membership</p>
               </div>

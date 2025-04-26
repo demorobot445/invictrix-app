@@ -4,7 +4,6 @@ import BodyCare from "@/components/Home/BodyCare/BodyCare";
 import Choosing from "@/components/Home/Choosing/Choosing";
 import Hero from "@/components/Home/Hero/Hero";
 import Shop from "@/components/Home/Shop/Shop";
-import Footer from "@/components/Layout/Header/Footer";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Head from "next/head";
@@ -106,7 +105,6 @@ export default function Home() {
         <BodyCare />
         <About />
         <Shop />
-        <Footer />
       </main>
     </>
   );

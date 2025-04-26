@@ -1,3 +1,4 @@
+import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 import localFont from "next/font/local";
 
@@ -18,6 +19,7 @@ const Layout: React.FC<Props> = ({ children }) => {
     >
       <Header />
       {children}
+      <Footer />
     </main>
   );
 };
