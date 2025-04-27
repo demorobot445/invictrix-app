@@ -25,13 +25,13 @@ const CustomLink: React.FC<Props> = ({ children, href }) => {
   return (
     <Link
       ref={container}
-      className="relative flex max-h-8 flex-col items-center justify-end overflow-hidden"
+      className="font-display relative flex max-h-10 flex-col items-center justify-end overflow-hidden"
       href={href}
       onPointerEnter={handleEnter}
       onPointerLeave={handleLeave}
     >
-      <span className="text-1 text-dark text-2xl">{children}</span>
-      <span className="text-2 text-dark text-2xl">{children}</span>
+      <span className="text-1 text-dark text-3xl">{children}</span>
+      <span className="text-2 text-dark text-3xl">{children}</span>
     </Link>
   );
 };

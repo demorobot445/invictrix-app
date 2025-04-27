@@ -1,7 +1,9 @@
 import Background from "@/components/Background/Background";
 import About from "@/components/Home/About/About";
+import AboutSlider from "@/components/Home/AboutImageSlider/AboutSlider";
 import BodyCare from "@/components/Home/BodyCare/BodyCare";
 import Choosing from "@/components/Home/Choosing/Choosing";
+import Contact from "@/components/Home/Contact/Contact";
 import Hero from "@/components/Home/Hero/Hero";
 import Shop from "@/components/Home/Shop/Shop";
 import { useGSAP } from "@gsap/react";
@@ -104,7 +106,9 @@ export default function Home() {
         <Choosing />
         <BodyCare />
         <About />
+        <AboutSlider />
         <Shop />
+        <Contact />
       </main>
     </>
   );

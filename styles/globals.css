@@ -6,3 +6,16 @@
   --color-dark: #3d3d3d;
   --color-primary: #f2d38a;
 }
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  background: #feeecb;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: #f2d38a;
+}

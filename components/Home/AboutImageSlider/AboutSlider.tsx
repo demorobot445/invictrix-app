@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Card from "./Card";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
@@ -6,17 +5,15 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
 import BodyCareBackground from "@/components/Background/BodyCareBackground";
 
-const BodyCare = () => {
+const AboutSlider = () => {
   const container = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
       gsap.set(".card-2", { y: innerHeight, opacity: 0 });
       gsap.set(".card-3", { y: innerHeight, opacity: 0 });
-      gsap.set(".card-4", { y: innerHeight, opacity: 0 });
       gsap.set(".img-2", { opacity: 0 });
       gsap.set(".img-3", { opacity: 0 });
-      gsap.set(".img-4", { opacity: 0 });
 
       const animation = gsap
         .timeline()
@@ -34,14 +31,7 @@ const BodyCare = () => {
         .to(".card-3", { y: 0, opacity: 1 })
         .to(".img-3", { opacity: 1 }, "<")
         .to(".head-3", { y: -120 }, "<")
-        .addLabel("third")
-        .to(".card-3", { y: -innerHeight, opacity: 0 })
-        .to(".img-3", { opacity: 0 }, "<")
-        .to(".head-3", { y: -180 }, "<")
-        .to(".card-4", { y: 0, opacity: 1 })
-        .to(".img-4", { opacity: 1 }, "<")
-        .to(".head-4", { y: -180 }, "<")
-        .addLabel("fouth");
+        .addLabel("third");
 
       ScrollTrigger.create({
         trigger: container.current!,
@@ -72,40 +62,26 @@ const BodyCare = () => {
           <span className="head-1 inline-block">truth</span>
           <span className="head-2 inline-block">feeling</span>
           <span className="head-3 inline-block">trust</span>
-          <span className="head-4 inline-block">sense</span>
         </span>
         <br />
         and becomes everything
       </h1>
       <div className="absolute top-48 h-[490px] w-[350px] 2xl:top-auto 2xl:h-[590px] 2xl:w-[450px]">
-        <Image
-          className="img-1 absolute top-0 z-10 h-full w-full object-cover"
-          src="/body-care/0.jpg"
-          alt="hero-img"
-          height={590}
-          width={450}
-        />
-        <Image
-          className="img-2 absolute top-0 z-10 h-full w-full object-cover"
-          src="/body-care/1.jpg"
-          alt="hero-img"
-          height={590}
-          width={450}
-        />
-        <Image
-          className="img-3 absolute top-0 z-10 h-full w-full object-cover"
-          src="/body-care/2.jpg"
-          alt="hero-img"
-          height={590}
-          width={450}
-        />
-        <Image
-          className="img-4 absolute top-0 z-10 h-full w-full object-cover"
-          src="/body-care/3.jpg"
-          alt="hero-img"
-          height={590}
-          width={450}
-        />
+        <div className="img-1 absolute top-0 z-10 flex aspect-[5/3.5] w-full items-center justify-center bg-[#231a12] object-cover">
+          <h3 className="font-display text-7xl text-white uppercase">
+            imperium
+          </h3>
+        </div>
+        <div className="img-2 absolute top-0 z-10 flex aspect-[5/3.5] w-full items-center justify-center bg-[#97845a] object-cover">
+          <h3 className="font-display text-7xl text-white uppercase">
+            insignia
+          </h3>
+        </div>
+        <div className="img-3 absolute top-0 z-10 flex aspect-[5/3.5] w-full items-center justify-center bg-[#d7c9a9] object-cover">
+          <h3 className="font-display text-7xl text-white uppercase">
+            illumine
+          </h3>
+        </div>
       </div>
       <Card
         id={1}
@@ -125,14 +101,8 @@ const BodyCare = () => {
         tag="Safe passage, profession"
         description="A Secret Ingredient from the Asian Tropics that will reach new lengths literally, promoting natural hair growth."
       />
-      <Card
-        id={4}
-        romanNumber="IV"
-        tag="Precision, Deep listening"
-        description="A Secret Ingredient from the Asian Tropics that will reach new lengths literally, promoting natural hair growth."
-      />
     </section>
   );
 };
 
-export default BodyCare;
+export default AboutSlider;
