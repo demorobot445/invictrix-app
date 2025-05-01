@@ -95,13 +95,7 @@ export const BlurHeroOne = () => {
 };
 export const BlurHeroTwo = () => {
   return (
-    <svg
-      width="1176"
-      height="831"
-      viewBox="0 0 1176 831"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 1176 831" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_f_336_9622)">
         <ellipse
           cx="627.5"
@@ -232,13 +226,7 @@ export const BlurHeroTwo = () => {
 };
 export const BlurHeroThree = () => {
   return (
-    <svg
-      width="1064"
-      height="834"
-      viewBox="0 0 1064 834"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 1064 834" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_f_336_9623)">
         <ellipse
           cx="470.5"

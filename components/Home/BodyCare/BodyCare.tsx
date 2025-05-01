@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
-import BodyCareBackground from "@/components/Background/BodyCareBackground";
+// import BodyCareBackground from "@/components/Background/BodyCareBackground";
 
 const BodyCare = () => {
   const container = useRef<HTMLElement>(null);
@@ -23,24 +23,24 @@ const BodyCare = () => {
         .addLabel("start")
         .to(".card-1", { y: -innerHeight, opacity: 0 })
         .to(".img-1", { opacity: 0 }, "<")
-        .to(".head-1", { y: -60 }, "<")
+        .to(".head-1", { y: -48 }, "<")
         .to(".card-2", { y: 0, opacity: 1 })
         .to(".img-2", { opacity: 1 }, "<")
-        .to(".head-2", { y: -60 }, "<")
+        .to(".head-2", { y: -48 }, "<")
         .addLabel("second")
         .to(".card-2", { y: -innerHeight, opacity: 0 })
         .to(".img-2", { opacity: 0 }, "<")
-        .to(".head-2", { y: -120 }, "<")
+        .to(".head-2", { y: -96 }, "<")
         .to(".card-3", { y: 0, opacity: 1 })
         .to(".img-3", { opacity: 1 }, "<")
-        .to(".head-3", { y: -120 }, "<")
+        .to(".head-3", { y: -96 }, "<")
         .addLabel("third")
         .to(".card-3", { y: -innerHeight, opacity: 0 })
         .to(".img-3", { opacity: 0 }, "<")
-        .to(".head-3", { y: -180 }, "<")
+        .to(".head-3", { y: -144 }, "<")
         .to(".card-4", { y: 0, opacity: 1 })
         .to(".img-4", { opacity: 1 }, "<")
-        .to(".head-4", { y: -180 }, "<")
+        .to(".head-4", { y: -144 }, "<")
         .addLabel("fouth");
 
       ScrollTrigger.create({
@@ -63,13 +63,15 @@ const BodyCare = () => {
   return (
     <section
       ref={container}
-      className="body-care-section relative container mx-auto flex min-h-screen flex-col items-center justify-center py-24"
+      className="body-care-section relative container mx-auto mb-24 flex min-h-screen flex-col items-center justify-center py-24"
     >
-      <BodyCareBackground />
-      <h1 className="text-dark font-display absolute top-12 left-1/2 z-20 -translate-x-1/2 text-center text-6xl uppercase 2xl:top-24">
+      {/* <BodyCareBackground /> */}
+      <h1 className="text-dark font-display absolute top-12 left-1/2 z-20 -translate-x-1/2 text-center text-5xl uppercase 2xl:top-24">
         it begins with{" "}
-        <span className="inline-flex h-[60px] flex-col overflow-hidden">
-          <span className="head-1 inline-block">truth</span>
+        <span className="inline-flex h-[48px] flex-col overflow-hidden">
+          <span className="head-1 inline-block">
+            tr<span className="text-primary">u</span>th
+          </span>
           <span className="head-2 inline-block">feeling</span>
           <span className="head-3 inline-block">trust</span>
           <span className="head-4 inline-block">sense</span>

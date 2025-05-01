@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
-import BodyCareBackground from "@/components/Background/BodyCareBackground";
+// import BodyCareBackground from "@/components/Background/BodyCareBackground";
 
 const AboutSlider = () => {
   const container = useRef<HTMLElement>(null);
@@ -31,7 +31,11 @@ const AboutSlider = () => {
         .to(".card-3", { y: 0, opacity: 1 })
         .to(".img-3", { opacity: 1 }, "<")
         .to(".head-3", { y: -120 }, "<")
-        .addLabel("third");
+        .addLabel("third")
+        .to(".img-0", { opacity: 1 })
+        .to(".img-1", { opacity: 1 }, "<")
+        .to(".img-2", { opacity: 1 }, "<")
+        .addLabel("fouth");
 
       ScrollTrigger.create({
         trigger: container.current!,
@@ -53,9 +57,9 @@ const AboutSlider = () => {
   return (
     <section
       ref={container}
-      className="body-care-section relative container mx-auto flex min-h-screen flex-col items-center justify-center py-24"
+      className="body-care-section relative container mx-auto mb-24 flex min-h-screen flex-col items-center justify-center py-24"
     >
-      <BodyCareBackground />
+      {/* <BodyCareBackground /> */}
       <h1 className="text-dark font-display absolute top-12 left-1/2 z-20 -translate-x-1/2 text-center text-6xl uppercase 2xl:top-24">
         it begins with{" "}
         <span className="inline-flex h-[60px] flex-col overflow-hidden">
@@ -67,17 +71,17 @@ const AboutSlider = () => {
         and becomes everything
       </h1>
       <div className="absolute top-48 h-[490px] w-[350px] 2xl:top-auto 2xl:h-[590px] 2xl:w-[450px]">
-        <div className="img-1 absolute top-0 z-10 flex aspect-[5/3.5] w-full items-center justify-center bg-[#231a12] object-cover">
+        <div className="img-1 absolute top-0 z-10 flex h-1/3 w-full items-center justify-center bg-[#231a12] object-cover">
           <h3 className="font-display text-7xl text-white uppercase">
             imperium
           </h3>
         </div>
-        <div className="img-2 absolute top-0 z-10 flex aspect-[5/3.5] w-full items-center justify-center bg-[#97845a] object-cover">
+        <div className="img-2 absolute top-1/3 z-10 flex h-1/3 w-full items-center justify-center bg-[#97845a] object-cover">
           <h3 className="font-display text-7xl text-white uppercase">
             insignia
           </h3>
         </div>
-        <div className="img-3 absolute top-0 z-10 flex aspect-[5/3.5] w-full items-center justify-center bg-[#d7c9a9] object-cover">
+        <div className="img-3 absolute top-2/3 z-10 flex h-1/3 w-full items-center justify-center bg-[#d7c9a9] object-cover">
           <h3 className="font-display text-7xl text-white uppercase">
             illumine
           </h3>

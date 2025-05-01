@@ -4,10 +4,11 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <header className="border-dark/20 relative z-20 container mx-auto flex items-center justify-between border-b py-8">
+    <header className="border-dark/20 fixed left-1/2 z-20 container mx-auto flex -translate-x-1/2 items-center justify-between border-b py-8">
       <Link href="/">
         <Image
-          className="object-contain"
+          style={{ filter: "invert(1)" }}
+          className="monogram object-contain"
           src="/logo.png"
           alt="logo"
           height={40}
