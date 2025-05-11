@@ -5,6 +5,7 @@
   --font-display: var(--lonear);
   --color-dark: #3d3d3d;
   --color-primary: #f2d38a;
+  --color-dark-primary: #c6ac73;
 }
 body::-webkit-scrollbar {
   width: 10px;
@@ -17,5 +18,19 @@ body::-webkit-scrollbar-track {
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
+  background: #f2d38a;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.scrollbar::-webkit-scrollbar-track {
+  background: #feeecb;
+}
+
+/* Handle */
+.scrollbar::-webkit-scrollbar-thumb {
   background: #f2d38a;
 }

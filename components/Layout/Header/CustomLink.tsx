@@ -6,9 +6,10 @@ import { useRef } from "react";
 type Props = {
   children: string;
   href: string;
+  pathname: string;
 };
 
-const CustomLink: React.FC<Props> = ({ children, href }) => {
+const CustomLink: React.FC<Props> = ({ children, href, pathname }) => {
   const container = useRef<HTMLAnchorElement>(null);
 
   const { contextSafe } = useGSAP(() => {}, { scope: container });
@@ -25,13 +26,13 @@ const CustomLink: React.FC<Props> = ({ children, href }) => {
   return (
     <Link
       ref={container}
-      className="font-display relative flex max-h-8 flex-col items-center justify-start overflow-hidden"
+      className={`font-display relative flex max-h-8 flex-col items-center justify-start overflow-hidden ${pathname === href ? "text-dark-primary" : pathname === "/the-intention" ? "text-white" : "text-black"}`}
       href={href}
       onPointerEnter={handleEnter}
       onPointerLeave={handleLeave}
     >
-      <span className="header-link text-1 text-3xl text-white">{children}</span>
-      <span className="header-link text-2 text-3xl text-white">{children}</span>
+      <span className="header-link text-1 text-3xl">{children}</span>
+      <span className="header-link text-2 text-3xl">{children}</span>
     </Link>
   );
 };

@@ -1,9 +1,9 @@
 import Background from "@/components/Background/Background";
 import About from "@/components/Home/About/About";
-import AboutSlider from "@/components/Home/AboutImageSlider/AboutSlider";
-import BodyCare from "@/components/Home/BodyCare/BodyCare";
-import Contact from "@/components/Home/Contact/Contact";
+// import AboutSlider from "@/components/Home/AboutImageSlider/AboutSlider";
+// import Contact from "@/components/Home/Contact/Contact";
 import Hero from "@/components/Home/Hero/Hero";
+import VideoReveal from "@/components/Home/VideoReveal/VideoReveal";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
@@ -85,16 +85,6 @@ export default function Home() {
       //     duration: 1,
       //     ease: "power2.out",
       //   });
-
-      const bgAnimation = gsap
-        .timeline()
-        .to(container.current!, { backgroundColor: "transparent" });
-
-      ScrollTrigger.create({
-        trigger: ".about-section",
-        toggleActions: "play none none reverse",
-        animation: bgAnimation,
-      });
     },
     { scope: container },
   );
@@ -104,15 +94,15 @@ export default function Home() {
       <Head>
         <title>Invictrix</title>
       </Head>
-      <main ref={container} className="relative bg-black">
+      <main ref={container} className="relative">
         <Background />
         <Hero />
         <About />
-        <BodyCare />
+        <VideoReveal />
         {/* <Choosing /> */}
-        <AboutSlider />
+        {/* <AboutSlider /> */}
         {/* <Shop /> */}
-        <Contact />
+        {/* <Contact /> */}
       </main>
     </>
   );

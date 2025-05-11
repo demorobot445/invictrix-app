@@ -1,15 +1,15 @@
 import Image from "next/image";
-import { BlurHeroThree } from "../Background/Svgs";
+import { BlurLoader } from "../Background/Svgs";
 
 const Loader = () => {
   return (
     <div className="loader fixed z-50 flex h-full w-full items-center justify-center bg-black">
-      <div className="lights absolute top-1/2 left-1/2 h-[60vw] w-[60vw] -translate-x-1/2 -translate-y-1/2 opacity-0">
-        <BlurHeroThree />
+      <div className="lights absolute bottom-[16%] left-[7%] w-full opacity-0 lg:-bottom-[44%] lg:left-[24%] lg:h-[60vw] lg:w-[60vw]">
+        <BlurLoader />
       </div>
-      <div className="overflow-hidden">
+      <div className="relative z-10 overflow-hidden">
         <Image
-          className="logo w-[30vw] translate-y-full object-contain"
+          className="logo w-[50vw] translate-y-full object-contain lg:w-[30vw]"
           src="/dark-logo.png"
           alt="logo"
           height={1080}
