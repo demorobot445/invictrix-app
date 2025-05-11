@@ -5,8 +5,8 @@ import About from "@/components/Home/About/About";
 import Hero from "@/components/Home/Hero/Hero";
 import VideoReveal from "@/components/Home/VideoReveal/VideoReveal";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
+// import gsap from "gsap";
+// import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import Head from "next/head";
 import { useRef } from "react";
 

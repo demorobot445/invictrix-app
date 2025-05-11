@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Card from "./Card";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
