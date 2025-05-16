@@ -26,7 +26,7 @@ const CustomLink: React.FC<Props> = ({ children, href, pathname }) => {
   return (
     <Link
       ref={container}
-      className={`font-display relative flex max-h-8 flex-col items-center justify-start overflow-hidden ${pathname === href ? "text-dark-primary" : pathname === "/the-intention" ? "text-white" : "text-black"}`}
+      className={`font-display relative flex max-h-8 flex-col items-center justify-start overflow-hidden ${pathname === href ? "text-dark-primary" : "text-white"}`}
       href={href}
       onPointerEnter={handleEnter}
       onPointerLeave={handleLeave}

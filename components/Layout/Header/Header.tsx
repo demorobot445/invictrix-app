@@ -2,17 +2,23 @@ import Link from "next/link";
 import CustomLink from "./CustomLink";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { forwardRef } from "react";
 
-const Header = () => {
+const Header = forwardRef<HTMLElement>((props, ref) => {
   const { pathname } = useRouter();
 
   return (
-    <header className="fixed left-1/2 z-20 container mx-auto flex -translate-x-1/2 items-center justify-between px-4 py-8 lg:px-0">
-      <Link href="/">
+    <header
+      ref={ref}
+      className={`fixed left-1/2 z-20 container mx-auto flex -translate-x-1/2 items-center justify-between bg-black px-4 py-8 lg:px-0`}
+    >
+      <Link
+        style={{
+          filter: "invert(1)",
+        }}
+        href="/"
+      >
         <Image
-          style={{
-            filter: pathname === "/the-intention" ? "invert(1)" : "invert(0)",
-          }}
           className="monogram object-contain"
           src="/logo.png"
           alt="logo"
@@ -42,6 +48,8 @@ const Header = () => {
       </div>
     </header>
   );
-};
+});
+
+Header.displayName = "Main Header";
 
 export default Header;

@@ -2,8 +2,11 @@ import { useRef } from "react";
 import Form from "./Form";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Image from "next/image";
+import { useLenis } from "lenis/react";
 
 const EnterCircle = () => {
+  const lenis = useLenis();
   const container = useRef<HTMLElement>(null);
 
   const { contextSafe } = useGSAP(() => {}, { scope: container });
@@ -11,7 +14,7 @@ const EnterCircle = () => {
   const handleClick = contextSafe(() => {
     gsap
       .timeline()
-      .set(document.body, { overflow: "hidden", paddingRight: 10 })
+      .call(() => lenis?.stop())
       .to(".popup-cover", { opacity: 1, pointerEvents: "auto" })
       .to(".popup", { scale: 1 });
   });
@@ -19,7 +22,7 @@ const EnterCircle = () => {
   const handleClose = contextSafe(() => {
     gsap
       .timeline()
-      .set(document.body, { overflow: "auto", paddingRight: 0 })
+      .call(() => lenis?.start())
       .to(".popup", { scale: 0 })
       .to(".popup-cover", { opacity: 0, pointerEvents: "none" });
   });
@@ -51,9 +54,15 @@ const EnterCircle = () => {
           </p>
           <button
             onClick={handleClick}
-            className="font-display mx-auto h-28 w-28 cursor-pointer rounded-full text-2xl text-white"
+            className="font-display mx-auto h-36 w-36 min-w-36 cursor-pointer rounded-full text-2xl text-white"
           >
-            Enter the <span className="text-4xl">Circle</span>
+            <Image
+              className="h-full w-full object-contain"
+              src="/buttons/enter-the-circle.png"
+              height={144}
+              width={144}
+              alt="button"
+            />
           </button>
         </div>
       </div>

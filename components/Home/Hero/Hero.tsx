@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <section className="relative z-10 container mx-auto flex w-full items-center py-24">
       <div className="relative z-20 flex w-1/2 flex-col px-9">
-        <h1 className="font-display mb-16 text-8xl text-black uppercase">
+        <h1 className="font-display hero-heading mb-16 text-8xl text-white uppercase">
           salt
           <br />
           level

@@ -13,9 +13,10 @@ const proximaNova = localFont({
 
 type Props = {
   children: React.ReactNode;
+  headerRef: React.RefObject<HTMLElement | null>;
 };
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout: React.FC<Props> = ({ children, headerRef }) => {
   const container = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -23,7 +24,7 @@ const Layout: React.FC<Props> = ({ children }) => {
       gsap
         .timeline()
         .to(".logo", { yPercent: -100, delay: 0.5 })
-        .to(".lights", { opacity: 0.75, duration: 1.5 })
+        .to(".lights", { opacity: 0.5, duration: 1.5 })
         .to(".logo", { yPercent: -220, delay: 3 }, "<0.5")
         .to(".lights", { opacity: 0, duration: 1.5 }, "<")
         .to(".loader", { opacity: 0, duration: 0.5, pointerEvents: "none" });
@@ -37,7 +38,7 @@ const Layout: React.FC<Props> = ({ children }) => {
       className={`${lonear.variable} ${proximaNova.variable} overflow-x-hidden bg-[#f4f4f4] font-sans`}
     >
       <Loader />
-      <Header />
+      <Header ref={headerRef} />
       {children}
       {/* <Footer /> */}
     </main>

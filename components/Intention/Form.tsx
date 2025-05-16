@@ -1,12 +1,20 @@
 import Image from "next/image";
 import Input from "./Input";
 import Close from "./Close";
+import { useState } from "react";
 
 type Props = {
   handleClose: () => void;
 };
 
 const Form: React.FC<Props> = ({ handleClose }) => {
+  const [status, setStatus] = useState<string>("");
+
+  const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus("Send");
+  };
+
   return (
     <div className="popup-cover pointer-events-none fixed top-1/2 left-1/2 z-30 flex h-full w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-black/60 opacity-0">
       <div className="border-primary popup scrollbar relative flex h-[95vh] w-[60%] max-w-[794px] scale-0 flex-col items-center overflow-auto border bg-black p-6">
@@ -29,7 +37,10 @@ const Form: React.FC<Props> = ({ handleClose }) => {
           We invite you to respond. If your vision aligns. you will hear from us
           directly.
         </p>
-        <div className="mt-15 grid w-full grid-cols-2 gap-x-14 gap-y-5">
+        <form
+          onSubmit={handleSumbit}
+          className="mt-15 grid w-full grid-cols-2 gap-x-14 gap-y-5"
+        >
           <Input
             label="Salutation"
             name="salutation"
@@ -102,14 +113,25 @@ const Form: React.FC<Props> = ({ handleClose }) => {
               id={`circle-about`}
             />
           </div>
-          <p className="text-primary col-span-2 text-center">
-            Your responses are held in confidence. We do not share or disclose
-            information under any circumstance.
-          </p>
-        </div>
-        <button className="font-display mx-auto mt-10 min-h-40 w-40 cursor-pointer rounded-full border border-white text-2xl text-white">
-          Send For <span className="text-3xl">Connection</span>
-        </button>
+          {status === "Send" && (
+            <p className="text-primary col-span-2 text-center">
+              Your responses are held in confidence. We do not share or disclose
+              information under any circumstance.
+            </p>
+          )}
+          <button
+            type="submit"
+            className="font-display col-span-2 mx-auto mt-10 min-h-40 w-56 cursor-pointer rounded-full text-2xl text-white"
+          >
+            <Image
+              className="h-full w-full object-contain"
+              src="/buttons/send-for-connection.png"
+              height={160}
+              width={226}
+              alt="button"
+            />
+          </button>
+        </form>
       </div>
     </div>
   );
