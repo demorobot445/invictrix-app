@@ -10,41 +10,45 @@ const Header = forwardRef<HTMLElement>((props, ref) => {
   return (
     <header
       ref={ref}
-      className={`fixed left-1/2 z-20 container mx-auto flex -translate-x-1/2 items-center justify-between bg-black px-4 py-8 lg:px-0`}
+      className="fixed inset-0 z-20 flex h-fit w-full items-center justify-center bg-black"
     >
-      <Link
-        style={{
-          filter: "invert(1)",
-        }}
-        href="/"
+      <div
+        className={`container mx-auto flex items-center justify-between px-4 py-8`}
       >
-        <Image
-          className="monogram object-contain"
-          src="/logo.png"
-          alt="logo"
-          height={40}
-          width={150}
-        />
-      </Link>
-      <div className="hidden items-center justify-center gap-2 lg:flex">
-        <div className="flex items-center justify-center gap-12">
-          <CustomLink pathname={pathname} href="/">
-            The Essence
-          </CustomLink>
-          <CustomLink pathname={pathname} href="/the-circle">
-            The Circle
-          </CustomLink>
-          <CustomLink pathname={pathname} href="/the-intention">
-            The Intention
-          </CustomLink>
+        <Link
+          style={{
+            filter: "invert(1)",
+          }}
+          href="/"
+        >
+          <Image
+            className="monogram object-contain"
+            src="/logo.png"
+            alt="logo"
+            height={40}
+            width={150}
+          />
+        </Link>
+        <div className="hidden items-center justify-center gap-2 lg:flex">
+          <div className="flex items-center justify-center gap-12">
+            <CustomLink pathname={pathname} href="/">
+              The Essence
+            </CustomLink>
+            <CustomLink pathname={pathname} href="/the-circle">
+              The Circle
+            </CustomLink>
+            <CustomLink pathname={pathname} href="/the-intention">
+              The Intention
+            </CustomLink>
+          </div>
+          <Image
+            className="min-w-10 object-contain"
+            src="/black-monogram.png"
+            alt="monogram"
+            height={50}
+            width={50}
+          />
         </div>
-        <Image
-          className="min-w-10 object-contain"
-          src="/black-monogram.png"
-          alt="monogram"
-          height={50}
-          width={50}
-        />
       </div>
     </header>
   );

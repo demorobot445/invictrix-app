@@ -62,7 +62,7 @@ const VideoReveal = () => {
   return (
     <section
       ref={container}
-      className="body-care-section relative container mx-auto mb-24 flex max-h-screen min-h-screen flex-col items-center justify-center"
+      className="body-care-section relative container mx-auto flex max-h-screen min-h-screen flex-col items-center justify-center"
     >
       <h1 className="font-display absolute top-12 left-1/2 z-20 -translate-x-1/2 text-center text-4xl font-bold text-black uppercase lg:top-[18%] 2xl:top-[25%]">
         it begins with{" "}
@@ -70,7 +70,7 @@ const VideoReveal = () => {
           <span className="head-0 inline-block">truth</span>
           <span className="head-1 inline-block">feeling</span>
           <span className="head-2 inline-block">trust</span>
-          <span className="head-3 inline-block">sense</span>
+          <span className="head-3 inline-block">understanding</span>
         </span>
         <br />
         and becomes everything

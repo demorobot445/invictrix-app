@@ -15,7 +15,7 @@ const Card: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={`card-${id} absolute left-1/2 grid w-full max-w-7xl -translate-x-1/2 grid-cols-3 items-center gap-52 px-10 lg:bottom-[5%] 2xl:bottom-[20%]`}
+      className={`card-${id} absolute top-1/2 left-1/2 grid w-full max-w-7xl -translate-x-1/2 -translate-y-1/2 grid-cols-3 items-center gap-52 px-10`}
     >
       <div className="flex flex-col">
         <div className="flex flex-col">
