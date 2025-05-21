@@ -4,7 +4,6 @@ import Present from "@/components/Intention/Present";
 import ReceiveIntention from "@/components/Intention/ReceiveIntention";
 import { useLenis } from "lenis/react";
 import Head from "next/head";
-import Link from "next/link";
 import { useEffect } from "react";
 
 export default function TheIntention() {
@@ -12,7 +11,7 @@ export default function TheIntention() {
 
   useEffect(() => {
     lenis?.start();
-  }, []);
+  }, [lenis]);
 
   return (
     <>
