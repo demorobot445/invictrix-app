@@ -41,13 +41,18 @@ export default function Home({
           .to(container.current, { backgroundColor: "#f4f4f4" })
           .to(headerRef.current, { backgroundColor: "#f4f4f4" }, "<")
           .to(
+            headerRef.current.children[0].children[1].children[0],
+            { backgroundColor: "#f4f4f4" },
+            "<",
+          )
+          .to(
             headerRef.current.children[0].children[0],
             { filter: "invert(0)" },
             "<",
           )
           .to(matchingElements[0], { color: "#000000" }, "<")
           .to(matchingElements[1], { color: "#000000" }, "<")
-          .to(".hero-heading", { color: "#000000" }, "<");
+          .to(".hero-text", { color: "#000000" }, "<");
 
         ScrollTrigger.create({
           toggleActions: "play none none reverse",

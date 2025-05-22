@@ -30,7 +30,7 @@ const EnterCircle = () => {
   return (
     <section ref={container}>
       <Form handleClose={handleClose} />
-      <div className="container mx-auto flex min-h-screen flex-col px-4 lg:flex-row lg:px-0">
+      <div className="container mx-auto flex min-h-screen flex-col px-3 lg:flex-row lg:px-0">
         <div className="lg:w-[60%]"></div>
         <div className="flex flex-col justify-center gap-7 lg:w-[40%]">
           <h1 className="text-primary font-display text-2xl lg:text-3xl">

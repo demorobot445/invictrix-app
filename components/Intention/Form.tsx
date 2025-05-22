@@ -16,8 +16,8 @@ const Form: React.FC<Props> = ({ handleClose }) => {
   };
 
   return (
-    <div className="popup-cover pointer-events-none fixed top-1/2 left-1/2 z-30 flex h-full w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-black/60 opacity-0">
-      <div className="border-primary popup scrollbar relative flex h-[95vh] w-[60%] max-w-[794px] scale-0 flex-col items-center overflow-auto border bg-black p-6">
+    <div className="popup-cover pointer-events-none fixed top-1/2 left-1/2 z-50 flex h-full w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-black/60 opacity-0">
+      <div className="border-primary popup scrollbar relative flex h-[95vh] w-[95%] max-w-[794px] scale-0 flex-col items-center overflow-auto border bg-black p-4 lg:w-[60%] lg:p-6">
         <button
           onClick={handleClose}
           className="absolute top-6 right-6 h-10 w-10 cursor-pointer"
@@ -39,7 +39,7 @@ const Form: React.FC<Props> = ({ handleClose }) => {
         </p>
         <form
           onSubmit={handleSumbit}
-          className="mt-15 grid w-full grid-cols-2 gap-x-14 gap-y-5"
+          className="mt-15 flex w-full flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-x-14 lg:gap-y-5"
         >
           <Input
             label="Salutation"

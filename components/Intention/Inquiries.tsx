@@ -17,7 +17,7 @@ const Inquiries = () => {
   return (
     <section
       ref={container}
-      className="container mx-auto flex min-h-screen flex-col px-4 lg:flex-row lg:px-0"
+      className="container mx-auto flex min-h-screen flex-col px-3 lg:flex-row lg:px-0"
     >
       <div className="flex flex-col justify-center gap-7 lg:w-1/2">
         <h1

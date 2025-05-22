@@ -10,51 +10,67 @@ const VideoReveal = () => {
 
   useGSAP(
     () => {
-      gsap.set(".card-1", { y: innerHeight, opacity: 0 });
-      gsap.set(".card-2", { y: innerHeight, opacity: 0 });
-      gsap.set(".card-3", { y: innerHeight, opacity: 0 });
-      gsap.set(".media-1", { opacity: 0 });
-      gsap.set(".media-2", { opacity: 0 });
-      gsap.set(".media-3", { opacity: 0 });
+      const mm = gsap.matchMedia();
+      const breakPoint = 800;
 
-      const animation = gsap
-        .timeline()
-        .addLabel("start")
-        .to(".card-0", { y: -innerHeight, opacity: 0 })
-        .to(".media-0", { opacity: 0 }, "<")
-        .to(".head-0", { y: -40 }, "<")
-        .to(".card-1", { y: 0, opacity: 1 })
-        .to(".media-1", { opacity: 1 }, "<")
-        .to(".head-1", { y: -40 }, "<")
-        .addLabel("second")
-        .to(".card-1", { y: -innerHeight, opacity: 0 })
-        .to(".media-1", { opacity: 0 }, "<")
-        .to(".head-1", { y: -80 }, "<")
-        .to(".card-2", { y: 0, opacity: 1 })
-        .to(".media-2", { opacity: 1 }, "<")
-        .to(".head-2", { y: -80 }, "<")
-        .addLabel("third")
-        .to(".card-2", { y: -innerHeight, opacity: 0 })
-        .to(".media-2", { opacity: 0 }, "<")
-        .to(".head-2", { y: -120 }, "<")
-        .to(".card-3", { y: 0, opacity: 1 })
-        .to(".media-3", { opacity: 1 }, "<")
-        .to(".head-3", { y: -120 }, "<")
-        .addLabel("fouth");
-
-      ScrollTrigger.create({
-        trigger: container.current!,
-        scrub: 1,
-        pin: true,
-        pinSpacing: true,
-        snap: {
-          snapTo: "labelsDirectional",
-          delay: 0,
-          duration: 1,
+      mm.add(
+        {
+          isDesktop: `(min-width: ${breakPoint}px)`,
+          isMobile: `(max-width: ${breakPoint - 1}px)`,
         },
-        animation,
-        end: `+=${innerHeight * data.length}`,
-      });
+        (context) => {
+          const { isMobile } = context.conditions as {
+            isMobile: boolean;
+            isDesktop: boolean;
+          };
+
+          gsap.set(".card-1", { y: innerHeight, opacity: 0 });
+          gsap.set(".card-2", { y: innerHeight, opacity: 0 });
+          gsap.set(".card-3", { y: innerHeight, opacity: 0 });
+          gsap.set(".media-1", { opacity: 0 });
+          gsap.set(".media-2", { opacity: 0 });
+          gsap.set(".media-3", { opacity: 0 });
+
+          const animation = gsap
+            .timeline()
+            .addLabel("start")
+            .to(".card-0", { y: -innerHeight, opacity: 0 })
+            .to(".media-0", { opacity: 0 }, "<")
+            .to(".head-0", { y: isMobile ? -28 : -40 }, "<")
+            .to(".card-1", { y: 0, opacity: 1 })
+            .to(".media-1", { opacity: 1 }, "<")
+            .to(".head-1", { y: isMobile ? -28 : -40 }, "<")
+            .addLabel("second")
+            .to(".card-1", { y: -innerHeight, opacity: 0 })
+            .to(".media-1", { opacity: 0 }, "<")
+            .to(".head-1", { y: isMobile ? -56 : -80 }, "<")
+            .to(".card-2", { y: 0, opacity: 1 })
+            .to(".media-2", { opacity: 1 }, "<")
+            .to(".head-2", { y: isMobile ? -56 : -80 }, "<")
+            .addLabel("third")
+            .to(".card-2", { y: -innerHeight, opacity: 0 })
+            .to(".media-2", { opacity: 0 }, "<")
+            .to(".head-2", { y: isMobile ? -84 : -120 }, "<")
+            .to(".card-3", { y: 0, opacity: 1 })
+            .to(".media-3", { opacity: 1 }, "<")
+            .to(".head-3", { y: isMobile ? -84 : -120 }, "<")
+            .addLabel("fouth");
+
+          ScrollTrigger.create({
+            trigger: container.current!,
+            scrub: 1,
+            pin: true,
+            pinSpacing: true,
+            snap: {
+              snapTo: "labelsDirectional",
+              delay: 0,
+              duration: 1,
+            },
+            animation,
+            end: `+=${innerHeight * data.length}`,
+          });
+        },
+      );
     },
     { scope: container },
   );
@@ -64,9 +80,9 @@ const VideoReveal = () => {
       ref={container}
       className="body-care-section relative container mx-auto flex max-h-screen min-h-screen flex-col items-center justify-center"
     >
-      <h1 className="font-display absolute top-12 left-1/2 z-20 -translate-x-1/2 text-center text-4xl font-bold text-black uppercase lg:top-[18%] 2xl:top-[25%]">
+      <h1 className="font-display absolute top-[75px] left-1/2 z-20 w-full -translate-x-1/2 text-center text-xl font-bold text-black uppercase lg:top-[18%] lg:text-4xl 2xl:top-[25%]">
         it begins with{" "}
-        <span className="text-dark-primary inline-flex h-[40px] flex-col overflow-hidden">
+        <span className="text-dark-primary inline-flex h-[20px] flex-col overflow-hidden lg:h-[40px]">
           <span className="head-0 inline-block">truth</span>
           <span className="head-1 inline-block">feeling</span>
           <span className="head-2 inline-block">trust</span>
@@ -75,7 +91,7 @@ const VideoReveal = () => {
         <br />
         and becomes everything
       </h1>
-      <div className="absolute aspect-video lg:w-[420px] 2xl:w-[500px]">
+      <div className="absolute top-1/2 left-0 mt-[75px] aspect-video w-[calc(100%-24px)] -translate-y-1/2 px-3 lg:top-auto lg:left-auto lg:mt-0 lg:w-[420px] lg:translate-y-0 lg:px-0 2xl:w-[500px]">
         {data.map((elem, index) => {
           return (
             <video

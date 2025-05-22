@@ -8,7 +8,7 @@ type Data = {
 
 export const data: Data[] = [
   {
-    mediaUrl: "/home/videos/0.mp4",
+    mediaUrl: "/the-essence-video/0.mp4",
     romanNumber: "I",
     description:
       "At Invictrix, we believe all legacies begin with truth— the kind that endures, elevates, and becomes everything.",
@@ -22,7 +22,7 @@ export const data: Data[] = [
     tagDescription: "The essence of what stays",
   },
   {
-    mediaUrl: "/home/videos/1.mp4",
+    mediaUrl: "/the-essence-video/1.mp4",
     romanNumber: "II",
     description:
       "At Invictrix, we believe all legacies are shaped through connection— the kind that transcends distance, evokes memory, and becomes everything.",
@@ -36,7 +36,7 @@ export const data: Data[] = [
     tagDescription: "The essence of what stays",
   },
   {
-    mediaUrl: "/home/videos/2.mp4",
+    mediaUrl: "/the-essence-video/2.mp4",
     romanNumber: "III",
     description:
       "At Invictrix, trust is our compass-earned through discretion and upheld through integrity. We don't just offer access; we offer assurance. Trust transforms entry into a protected path toward legacy.",
@@ -50,7 +50,7 @@ export const data: Data[] = [
     tagDescription: "Partnership for what matters",
   },
   {
-    mediaUrl: "/home/videos/3.mp4",
+    mediaUrl: "/the-essence-video/3.mp4",
     romanNumber: "IV",
     description:
       "At Invictrix, ambition is not about status— it's about resonance. We listen intently, interpret with care, and respond with elegant precision shaping experiences that mirror your deepest aspirations",

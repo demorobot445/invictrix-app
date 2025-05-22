@@ -14,56 +14,73 @@ const Circle = () => {
 
   const { contextSafe } = useGSAP(
     () => {
-      gsap
-        .timeline()
-        .call(() => lenis?.stop())
-        .from(".main", { scale: 0, duration: 6 })
-        .from(
-          ".card",
-          { opacity: 0, stagger: { each: 0.3, from: "center", amount: 1 } },
-          "<1.5",
-        )
-        .from(".content", { opacity: 0, duration: 1 });
+      const mm = gsap.matchMedia(),
+        breakPoint = 800;
 
-      gsap.set(".scroll-card-1", { xPercent: 45, scale: 0.5, opacity: 0.5 });
-      gsap.set(".scroll-card-img-1", { rotateY: 20 });
-      gsap.set(".scroll-card-2", { xPercent: 100, scale: 0.5, opacity: 0.5 });
-      gsap.set(".scroll-card-img-2", { rotateY: 20 });
-      gsap.set(".scroll-card-3", { xPercent: 100, scale: 0.5, opacity: 0.5 });
-      gsap.set(".scroll-card-img-3", { rotateY: 20 });
-
-      const animation = gsap
-        .timeline()
-        .addLabel("card-0")
-        .to(".scroll-card-0", { xPercent: -100, opacity: 0.5 })
-        .to(".scroll-card-1", { xPercent: 0, scale: 1, opacity: 1 }, "<")
-        .to(".scroll-card-img-1", { rotateY: 0 }, "<")
-        .to(".scroll-card-2", { xPercent: 45 }, "<")
-        .addLabel("card-1")
-        .to(".scroll-card-1", { xPercent: -100, opacity: 0.5 })
-        .to(".scroll-card-2", { xPercent: 0, scale: 1, opacity: 1 }, "<")
-        .to(".scroll-card-img-2", { rotateY: 0 }, "<")
-        .to(".scroll-card-3", { xPercent: 45 }, "<")
-        .addLabel("card-2")
-        .to(".scroll-card-2", { xPercent: -100, opacity: 0.5 })
-        .to(".scroll-card-3", { xPercent: 0, scale: 1, opacity: 1 }, "<")
-        .to(".scroll-card-img-3", { rotateY: 0 }, "<")
-        .addLabel("card-3")
-        .to(".show-next", { opacity: 1 })
-        .addLabel("end");
-
-      ScrollTrigger.create({
-        trigger: container.current,
-        scrub: 1,
-        pin: true,
-        pinSpacing: true,
-        snap: {
-          duration: 0,
-          snapTo: "labelsDirectional",
+      mm.add(
+        {
+          isDesktop: `(min-width: ${breakPoint}px)`,
+          isMobile: `(max-width: ${breakPoint - 1}px)`,
         },
-        end: "+=4000",
-        animation,
-      });
+        (context) => {
+          const { isMobile } = context.conditions as {
+            isMobile: boolean;
+            isDesktop: boolean;
+          };
+
+          gsap
+            .timeline()
+            .call(() => lenis?.stop())
+            .from(".main", { scale: 0, duration: 6 })
+            .from(
+              ".card",
+              { opacity: 0, stagger: { each: 0.3, from: "center", amount: 1 } },
+              "<1.5",
+            )
+            .from(".content", { opacity: 0, duration: 1 });
+
+          gsap.set(".scroll-card-1", {
+            xPercent: isMobile ? 100 : 45,
+            scale: 0.5,
+            opacity: 0.5,
+          });
+          gsap.set(".scroll-card-img-1", { rotateY: 20 });
+          gsap.set(".scroll-card-2", {
+            xPercent: 100,
+            scale: 0.5,
+            opacity: 0.5,
+          });
+          gsap.set(".scroll-card-img-2", { rotateY: 20 });
+
+          const animation = gsap
+            .timeline()
+            .addLabel("card-0")
+            .to(".scroll-card-0", { xPercent: -100, opacity: 0.5 })
+            .to(".scroll-card-1", { xPercent: 0, scale: 1, opacity: 1 }, "<")
+            .to(".scroll-card-img-1", { rotateY: 0 }, "<")
+            .to(".scroll-card-2", { xPercent: isMobile ? 100 : 45 }, "<")
+            .addLabel("card-1")
+            .to(".scroll-card-1", { xPercent: -100, opacity: 0.5 })
+            .to(".scroll-card-2", { xPercent: 0, scale: 1, opacity: 1 }, "<")
+            .to(".scroll-card-img-2", { rotateY: 0 }, "<")
+            .addLabel("card-3")
+            .to(".show-next", { opacity: 1 })
+            .addLabel("end");
+
+          ScrollTrigger.create({
+            trigger: container.current,
+            scrub: 1,
+            pin: true,
+            pinSpacing: true,
+            snap: {
+              duration: 0,
+              snapTo: "labelsDirectional",
+            },
+            end: isMobile ? "+=2000" : "+=3000",
+            animation,
+          });
+        },
+      );
     },
     { scope: container },
   );
@@ -93,37 +110,38 @@ const Circle = () => {
       ref={container}
       className="relative h-lvh w-full overflow-hidden bg-black perspective-dramatic"
     >
-      <div className="content absolute top-[114px] left-0 z-20 flex h-[calc(100%-114px)] w-full flex-col items-center justify-center gap-4 bg-black/60">
-        <h1 className="font-display text-6xl text-white">Enter The Circle</h1>
-        <h2 className="text-dark-primary font-display text-2xl">
+      <div className="content absolute top-[70px] left-0 z-20 flex h-[calc(100%-70px)] w-full flex-col items-center justify-center gap-4 bg-black/60 px-3 lg:top-[114px] lg:h-[calc(100%-114px)] lg:px-0">
+        <h1 className="font-display text-center text-4xl text-white lg:text-6xl">
+          Enter The Circle
+        </h1>
+        <h2 className="text-dark-primary font-display text-center text-xl lg:text-2xl">
           Three tiers. One philosophy. Timeless access, intentionally scaled.
         </h2>
-        <p className="text-2xl text-white">
+        <p className="text-center text-xl text-white lg:text-2xl">
           Explore the levels of membership that reflect not just access— but
           essence.
         </p>
-        <h3 className="font-display text-2xl text-white">
+        <h3 className="font-display text-xl text-white lg:text-2xl">
           Imperium. Illumine. Insignia.
         </h3>
         <button
           onClick={handlePathBegin}
-          className="cursor-pointer text-2xl text-white"
+          className="cursor-pointer text-xl text-white lg:text-2xl"
         >
           Your path begins here
         </button>
       </div>
       <div
         style={{ transform: "rotate3d(0,1,0,3deg)" }}
-        className="main absolute inset-0 mt-[114px] grid h-[calc(100%-114px)] w-full translate-x-48 scale-150 grid-cols-4 gap-6 bg-black"
+        className="main absolute inset-0 mt-[70px] grid h-[calc(100%-70px)] w-[100vh] -translate-x-48 scale-110 grid-cols-3 gap-x-0 gap-y-6 bg-black lg:mt-[114px] lg:h-[calc(100%-114px)] lg:w-full lg:translate-x-48 lg:scale-150 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-6"
       >
         {[...Array(12)].map((_, i) => {
-          const transform = getRandomTransform();
           return (
             <div
               key={i}
               className="card"
               style={{
-                transform,
+                transform: getRandomTransform(),
               }}
             >
               <Image
@@ -147,11 +165,11 @@ const Circle = () => {
               continue to the intention
             </Link>
           </div>
-          {["I", "II", "III", "IV"].map((e, i) => {
+          {["I", "II", "III"].map((e, i) => {
             return (
               <div
                 onClick={() => handleContent(i)}
-                className={`absolute inset-0 cursor-pointer flex-col items-center justify-center scroll-card-${i} flex h-full min-w-screen items-center justify-center perspective-midrange`}
+                className={`absolute inset-0 cursor-pointer flex-col items-center justify-center px-3 lg:px-0 scroll-card-${i} flex h-full min-w-screen items-center justify-center perspective-midrange`}
                 key={i}
               >
                 <div
@@ -173,16 +191,17 @@ const Circle = () => {
                     >
                       {e}
                     </p>
-                    <Image
-                      className={`aspect-video w-[40%] object-cover`}
-                      src={`/the-circle/${i}.jpg`}
-                      alt="placeholder-img"
-                      width={1366}
-                      height={689}
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className={`aspect-video w-full object-cover lg:w-[40%]`}
+                      src={`/the-circle-video/${i}.mp4`}
                     />
                   </div>
                   <p
-                    className={`scroll-content-${i} mt-4 max-w-1/2 text-center text-white opacity-0`}
+                    className={`scroll-content-${i} mt-4 text-center text-white opacity-0 lg:max-w-1/2`}
                   >
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                     Quibusdam nemo labore a vel, consequatur magnam molestias

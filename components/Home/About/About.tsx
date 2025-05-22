@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <section className="about-section relative z-10 container mx-auto flex flex-col px-5 py-24">
+    <section className="about-section relative z-10 container mx-auto flex flex-col px-3 py-24 lg:px-0">
       <div className="relative mb-12">
         <video
           className="h-[580px] w-full object-cover"
@@ -16,23 +16,7 @@ const About = () => {
           watch !
         </p>
       </div>
-      <div className="flex w-full">
-        <div className="w-1/3">
-          <div className="flex w-fit items-center justify-center bg-white">
-            <h2 className="bg-dark flex h-16 w-16 items-center justify-center text-4xl text-white">
-              80
-            </h2>
-            <p className="px-12 text-xl">kg salt per year</p>
-          </div>
-        </div>
-        <div className="w-2/3">
-          <p className="w-full max-w-[720px] text-xl">
-            Salt from the sea normalizes the activity of the sebaceous glands,
-            which helps to get rid of the oily shine of the face and clogging of
-            pores.
-          </p>
-        </div>
-      </div>
+      <div className="flex w-full"></div>
     </section>
   );
 };

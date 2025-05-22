@@ -34,3 +34,10 @@ body::-webkit-scrollbar-thumb {
 .scrollbar::-webkit-scrollbar-thumb {
   background: #f2d38a;
 }
+
+@media screen and (max-width: 800px) {
+  .clip-menu {
+    clip-path: inset(100% 0% 0% 0%);
+    pointer-events: none;
+  }
+}

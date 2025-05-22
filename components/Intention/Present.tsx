@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Present = () => {
   return (
-    <section className="container mx-auto flex h-screen w-full flex-col px-4 lg:px-0">
+    <section className="container mx-auto flex h-screen w-full flex-col px-3 lg:px-0">
       <div className="mt-auto flex flex-col gap-4">
         <h2 className="font-display text-dark-primary text-center text-2xl">
           New York - Los Angeles - Miami - Chicago - Houston… and beyond.

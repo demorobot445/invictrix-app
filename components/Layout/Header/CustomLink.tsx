@@ -7,9 +7,15 @@ type Props = {
   children: string;
   href: string;
   pathname: string;
+  handleClick: () => void;
 };
 
-const CustomLink: React.FC<Props> = ({ children, href, pathname }) => {
+const CustomLink: React.FC<Props> = ({
+  children,
+  href,
+  pathname,
+  handleClick,
+}) => {
   const container = useRef<HTMLAnchorElement>(null);
 
   const { contextSafe } = useGSAP(() => {}, { scope: container });
@@ -28,6 +34,7 @@ const CustomLink: React.FC<Props> = ({ children, href, pathname }) => {
       ref={container}
       className={`font-display relative flex max-h-8 flex-col items-center justify-start overflow-hidden ${pathname === href ? "text-dark-primary" : "text-white"}`}
       href={href}
+      onClick={handleClick}
       onPointerEnter={handleEnter}
       onPointerLeave={handleLeave}
     >
