@@ -1,0 +1,5 @@
+# Ignore all three.js/particles related files
+pages/particles/**/*.ts
+pages/particles/**/*.tsx
+pages/particles/components/*.tsx
+lib/particles/*.ts
