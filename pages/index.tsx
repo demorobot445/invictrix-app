@@ -9,10 +9,28 @@ import { useLenis } from "lenis/react";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { fetchGraphQL } from "@/libs/api";
+import { HOMEPAGE_QUERY } from "@/libs/queries";
+import type { InferGetStaticPropsType, GetStaticProps } from "next";
+import type { HomePageData } from "@/types/invictrix";
+
+export const getStaticProps = (async () => {
+  const data: { home: HomePageData } = await fetchGraphQL(HOMEPAGE_QUERY);
+
+  return {
+    props: {
+      data: data.home,
+    },
+    revalidate: 60,
+  };
+}) satisfies GetStaticProps<{
+  data: HomePageData;
+}>;
 
 export default function Home({
+  data,
   headerRef,
-}: {
+}: InferGetStaticPropsType<typeof getStaticProps> & {
   headerRef: React.RefObject<HTMLDivElement>;
 }) {
   const container = useRef<HTMLElement>(null);
@@ -70,12 +88,16 @@ export default function Home({
       </Head>
       <main ref={container} className="relative w-full bg-black">
         <Background />
-        <Hero />
-        <About />
-        <VideoReveal />
+        <Hero
+          heroSection={data.heroSection}
+          sectionTwo={data.sectionTwo}
+          sectionThree={data.sectionThree}
+        />
+        <About {...data.sectionThree} />
+        <VideoReveal data={data.essences} heading={data.essenceHeading} />
         <div className="my-2 flex w-full items-center justify-center">
           <Link
-            className="font-display text-center text-2xl uppercase underline underline-offset-2"
+            className="font-display text-center uppercase underline underline-offset-2"
             href="/the-circle"
           >
             continue to the circle

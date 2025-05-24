@@ -29,10 +29,20 @@ const CustomLink: React.FC<Props> = ({
     gsap.to(".text-2", { yPercent: 0, ease: "power2.inOut" });
   });
 
+  const conditionalColor = () => {
+    if (pathname === href) {
+      return "text-dark-primary";
+    } else if (pathname === "/the-circle") {
+      return "text-black";
+    } else {
+      return "text-white";
+    }
+  };
+
   return (
     <Link
       ref={container}
-      className={`font-display relative flex max-h-8 flex-col items-center justify-start overflow-hidden ${pathname === href ? "text-dark-primary" : "text-white"}`}
+      className={`font-display relative flex max-h-8 flex-col items-center justify-start overflow-hidden ${conditionalColor()}`}
       href={href}
       onClick={handleClick}
       onPointerEnter={handleEnter}

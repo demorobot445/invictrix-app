@@ -34,14 +34,14 @@ const Header = forwardRef<HTMLElement>((props, ref) => {
   return (
     <header
       ref={ref}
-      className="fixed inset-0 z-40 flex h-fit w-full items-center justify-center bg-black"
+      className={`fixed inset-0 z-40 flex h-fit w-full items-center justify-center ${pathname === "/the-circle" ? "bg-white lg:bg-transparent" : "bg-black"}`}
     >
       <div
-        className={`container mx-auto flex items-center justify-between px-3 py-4 lg:px-4 lg:py-8`}
+        className={`container mx-auto flex items-center justify-between px-4 py-4 lg:py-8`}
       >
         <Link
           style={{
-            filter: "invert(1)",
+            filter: pathname === "/the-circle" ? "invert(0)" : "invert(1)",
           }}
           href="/"
           className="relative z-20"
@@ -55,7 +55,9 @@ const Header = forwardRef<HTMLElement>((props, ref) => {
           />
         </Link>
         <div ref={container} className="flex items-center justify-center gap-2">
-          <div className="menu clip-menu fixed inset-0 flex h-full w-full flex-col items-center justify-center gap-12 bg-black lg:relative lg:flex-row">
+          <div
+            className={`menu clip-menu fixed inset-0 flex h-full w-full flex-col items-center justify-center gap-12 lg:relative lg:flex-row ${pathname === "/the-circle" ? "bg-white lg:bg-transparent" : "bg-black lg:bg-transparent"} `}
+          >
             <CustomLink handleClick={handleClick} pathname={pathname} href="/">
               The Essence
             </CustomLink>
