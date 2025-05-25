@@ -5,8 +5,28 @@ import ReceiveIntention from "@/components/Intention/ReceiveIntention";
 import { useLenis } from "lenis/react";
 import Head from "next/head";
 import { useEffect } from "react";
+import type { InferGetStaticPropsType, GetStaticProps } from "next";
+import type { IntentionPageData } from "@/types/invictrix";
+import { fetchGraphQL } from "@/libs/api";
+import { INTENTIONPAGE_QUERY } from "@/libs/queries";
 
-export default function TheIntention() {
+export const getStaticProps = (async () => {
+  const data: { intention: IntentionPageData } =
+    await fetchGraphQL(INTENTIONPAGE_QUERY);
+
+  return {
+    props: {
+      data: data.intention,
+    },
+    revalidate: 60,
+  };
+}) satisfies GetStaticProps<{
+  data: IntentionPageData;
+}>;
+
+export default function TheIntention({
+  data,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const lenis = useLenis();
 
   useEffect(() => {
@@ -19,10 +39,10 @@ export default function TheIntention() {
         <title>Invictrix - The Intention</title>
       </Head>
       <main className="w-full bg-black">
-        <ReceiveIntention />
-        <EnterCircle />
-        <Inquiries />
-        <Present />
+        <ReceiveIntention {...data.heroSection} />
+        <EnterCircle {...data.sectionTwo} />
+        <Inquiries {...data.contactSection} />
+        <Present {...data.contactSection} />
       </main>
     </>
   );
