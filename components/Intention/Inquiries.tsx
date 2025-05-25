@@ -22,11 +22,11 @@ const Inquiries: React.FC<Props> = ({ heading, email }) => {
       ref={container}
       className="container mx-auto flex min-h-screen flex-col px-3 lg:flex-row lg:px-0"
     >
-      <div className="flex flex-col items-center justify-center gap-7 lg:w-1/2">
+      <div className="flex flex-col items-center justify-center gap-2 lg:w-1/2 lg:gap-6">
         <h1
           onMouseEnter={handlePointerEnter}
           onMouseLeave={handlePointerLeave}
-          className="max-w-[450px] cursor-pointer text-center text-2xl text-white lg:text-4xl"
+          className="max-w-[300px] cursor-pointer text-center text-white lg:text-2xl"
         >
           {heading}
         </h1>

@@ -28,7 +28,10 @@ const VideoReveal: React.FC<Props> = ({ data, heading }) => {
 
           data.forEach((_elem, index) => {
             if (index !== 0) {
-              gsap.set(`.card-${index}`, { y: innerHeight, opacity: 0 });
+              gsap.set(`.card-${index}`, {
+                y: isMobile ? 0 : innerHeight,
+                opacity: 0,
+              });
               gsap.set(`.media-${index}`, { opacity: 0 });
             }
           });
@@ -37,15 +40,19 @@ const VideoReveal: React.FC<Props> = ({ data, heading }) => {
 
           data.slice(0, data.length - 1).forEach((elem, index) => {
             animation
-              .to(`.card-${index}`, { y: -innerHeight, opacity: 0 })
+              .to(`.card-${index}`, {
+                y: isMobile ? 0 : -innerHeight,
+                opacity: 0,
+              })
               .to(`.media-${index}`, { opacity: 0 }, "<")
+              .to(`.media-${index + 1}`, { opacity: 1 }, "<")
               .to(
                 `.head-${index}`,
                 { y: isMobile ? -28 * (index + 1) : -40 * (index + 1) },
                 "<",
               )
               .to(`.card-${index + 1}`, { y: 0, opacity: 1 })
-              .to(`.media-${index + 1}`, { opacity: 1 }, "<")
+
               .to(
                 `.head-${index + 1}`,
                 { y: isMobile ? -28 * (index + 1) : -40 * (index + 1) },

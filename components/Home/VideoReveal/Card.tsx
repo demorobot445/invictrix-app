@@ -20,7 +20,7 @@ const Card: React.FC<Props> = ({ index, leftSide, rightSide }) => {
       </div>
       <div />
       <div className="flex flex-col">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col justify-center gap-4 lg:min-h-[272px] lg:justify-end">
           <p className="text-sm text-black lg:text-xl">
             {rightSide.description}
           </p>

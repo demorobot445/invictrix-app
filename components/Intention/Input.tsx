@@ -20,7 +20,7 @@ const Input: React.FC<Props> = ({
         {label}
       </label>
       <input
-        className="border-primary border p-1 placeholder:text-[#7f7f7f]"
+        className="border-primary border p-1 text-white placeholder:text-[#7f7f7f] focus:outline-none"
         placeholder={placeholder}
         id={`circle-${name}`}
         type={type}

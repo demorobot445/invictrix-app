@@ -49,6 +49,8 @@ export default function Home({
         headerRef.current.children[0].children[1].children[0].children,
       );
 
+      const lines = headerRef.current.querySelectorAll(".ham-line");
+
       const matchingElements = children.filter((child) =>
         child.classList.contains("text-white"),
       );
@@ -70,6 +72,7 @@ export default function Home({
           )
           .to(matchingElements[0], { color: "#000000" }, "<")
           .to(matchingElements[1], { color: "#000000" }, "<")
+          .to(lines, { backgroundColor: "#000000" }, "<")
           .to(".hero-text", { color: "#000000" }, "<");
 
         ScrollTrigger.create({

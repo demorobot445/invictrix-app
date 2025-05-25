@@ -86,7 +86,7 @@ const Form: React.FC<Props> = ({ handleClose }) => {
             </label>
             <textarea
               rows={4}
-              className="border-primary border p-1 placeholder:text-[#7f7f7f]"
+              className="border-primary border p-1 text-white placeholder:text-[#7f7f7f] focus:outline-none"
               placeholder={"Referral, events, or article mention…"}
               id={`circle-discover-invictrix`}
             />
@@ -106,7 +106,7 @@ const Form: React.FC<Props> = ({ handleClose }) => {
             </label>
             <textarea
               rows={6}
-              className="border-primary border p-1 placeholder:text-[#7f7f7f]"
+              className="border-primary border p-1 text-white placeholder:text-[#7f7f7f] focus:outline-none"
               placeholder={
                 "Share what brings you here and how Invictrix may support your journey…."
               }

@@ -6,11 +6,11 @@ type Props = IntentionContactSection & {};
 const Present: React.FC<Props> = ({ locations, subHeading }) => {
   return (
     <section className="container mx-auto flex h-screen w-full flex-col px-3 lg:px-0">
-      <div className="mt-auto flex flex-col gap-4">
-        <h2 className="font-display text-dark-primary text-center text-2xl">
+      <div className="mt-auto flex flex-col">
+        <h2 className="font-display text-dark-primary text-center lg:text-2xl">
           {locations}
         </h2>
-        <h3 className="font-display text-center text-3xl text-white">
+        <h3 className="font-display text-center text-white lg:text-2xl">
           {subHeading}
         </h3>
         <div className="flex w-full items-center justify-center py-2">
