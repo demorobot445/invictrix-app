@@ -12,7 +12,7 @@ const Card: React.FC<Props> = ({ index, leftSide, rightSide }) => {
           <h2 className="font-display text-dark-primary mt-2 text-8xl lg:text-[10rem] lg:leading-[10rem]">
             {leftSide.romanNumber}
           </h2>
-          <p className="font-display -mt-4 max-w-40 text-2xl text-black lg:mt-0 lg:text-4xl">
+          <p className="font-display -mt-4 max-w-[213px] text-2xl text-black lg:mt-0 lg:text-4xl">
             {leftSide.tagline}
           </p>
           <p className="font-display text-xl">{leftSide.subTagline}</p>

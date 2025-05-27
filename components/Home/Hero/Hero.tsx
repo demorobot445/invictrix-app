@@ -15,7 +15,7 @@ const Hero: React.FC<Props> = ({ heroSection, sectionThree, sectionTwo }) => {
     <section className="relative z-10 container mx-auto flex w-full flex-col items-center">
       <div className="mt-[70px] flex h-full min-h-[calc(100vh-70px)] w-full flex-col px-3 lg:mt-[114px] lg:min-h-[calc(100vh-114px)] lg:flex-row lg:p-0">
         <div className="min-h-[50vh] lg:w-1/2"></div>
-        <div className="flex max-w-[500px] flex-col justify-center gap-4 lg:w-1/2 lg:gap-8">
+        <div className="flex max-w-[550px] flex-col justify-center gap-4 lg:w-1/2 lg:gap-8">
           <h1 className="text-dark-primary font-display max-w-[500px] text-4xl font-black lg:text-6xl">
             {heroSection.heading}
           </h1>
@@ -28,7 +28,7 @@ const Hero: React.FC<Props> = ({ heroSection, sectionThree, sectionTwo }) => {
         </div>
       </div>
       <div className="flex h-full min-h-screen w-full flex-col-reverse px-3 lg:flex-row lg:px-0">
-        <div className="flex h-full flex-col justify-center gap-4 lg:w-1/2 lg:gap-8">
+        <div className="flex h-full max-w-[550px] flex-col justify-center gap-4 lg:w-1/2 lg:gap-8">
           <p className="hero-text text-black lg:text-2xl">
             {sectionTwo.paragraphOne}
           </p>

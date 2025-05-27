@@ -79,16 +79,16 @@ const Header = forwardRef<HTMLElement>((props, ref) => {
               The Intention
             </CustomLink>
           </div>
-          <Image
+          {/* <Image
             className="z-20 hidden w-9 object-contain lg:block lg:w-[50px]"
             src="/black-monogram.png"
             alt="monogram"
             height={50}
             width={50}
-          />
+          /> */}
           <button
             onClick={handleClick}
-            className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-[6px] lg:hidden"
+            className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-[6px] lg:pointer-events-none"
           >
             <span
               className={`ham-line block h-0.5 w-6 transition-transform duration-300 ${

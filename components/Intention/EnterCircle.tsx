@@ -44,12 +44,11 @@ const EnterCircle: React.FC<Props> = ({
           <h1 className="text-primary font-display text-2xl font-bold lg:text-4xl">
             {heading}
           </h1>
-
-          <p className="text-white lg:text-2xl">{paragraphOne}</p>
-
-          <p className="text-white lg:text-2xl">{paragraphTwo}</p>
-
-          <p className="text-white lg:text-2xl">{paragraphThree}</p>
+          <div className="flex w-[99%] flex-col justify-center gap-2 lg:gap-6">
+            <p className="text-white lg:text-2xl">{paragraphOne}</p>
+            <p className="text-white lg:text-2xl">{paragraphTwo}</p>
+            <p className="text-white lg:text-2xl">{paragraphThree}</p>
+          </div>
           <button
             onClick={handleClick}
             className="font-display mx-auto h-36 w-36 min-w-36 cursor-pointer rounded-full text-2xl text-white"
