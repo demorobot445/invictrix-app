@@ -105,7 +105,7 @@ export default function Home({
       const x = -1000;
       const scale = isMobile ? 0.4 : 0.6;
       // const rotationY = isMobile ? -Math.PI * 2 : -Math.PI * 2.2;
-      const rotationY = -Math.PI * 2.7;
+      const rotationY = -Math.PI * 3.0;
       particles.position.set(x, -50, 0);
       particles.rotation.set(0, rotationY, 0);
       particles.scale.set(scale, scale, scale);
@@ -139,7 +139,7 @@ export default function Home({
       particlesTimeline.to(
         particles.rotation,
         {
-          y: -Math.PI * 1.1,
+          y: -Math.PI * 1.0,
           ease: "power1.inOut",
         },
         "<",
@@ -192,16 +192,20 @@ export default function Home({
         <title>Invictrix</title>
       </Head>
       <main ref={container} className="relative w-full bg-black">
-        <Background />
+        <Background />{" "}
         <div className="pointer-events-auto fixed inset-0 z-20 h-screen bg-transparent">
           <Canvas
             gl={{ antialias: true }}
+            orthographic
             camera={{
-              fov: 50,
-              far: 6000,
-              near: 0.0001,
-              aspect: dimensions.x / dimensions.y,
+              left: -dimensions.x / 2,
+              right: dimensions.x / 2,
+              top: dimensions.y / 2,
+              bottom: -dimensions.y / 2,
+              near: 0.1,
+              far: 2000,
               position: new Vector3(0, 0, 800),
+              zoom: 1,
             }}
           >
             <Scene ref={setParticles} />
@@ -220,7 +224,6 @@ export default function Home({
         <div ref={refVideo}>
           <VideoReveal data={data.essences} heading={data.essenceHeading} />
         </div>
-
         <div className="my-2 flex w-full items-center justify-center">
           <Link
             className="font-display z-40 text-center text-2xl uppercase underline underline-offset-2"

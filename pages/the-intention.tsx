@@ -217,14 +217,19 @@ export default function TheIntention({
         <title>Invictrix - The Intention</title>
       </Head>
       <main className="w-full bg-black">
+        {" "}
         <div className="fixed inset-0 h-screen bg-transparent">
           <Canvas
+            orthographic
             camera={{
-              fov: 50,
-              far: 6000,
-              near: 0.0001,
-              aspect: dimensions.x / dimensions.y,
+              left: -dimensions.x / 2,
+              right: dimensions.x / 2,
+              top: dimensions.y / 2,
+              bottom: -dimensions.y / 2,
+              near: 0.1,
+              far: 2000,
               position: new Vector3(0, 0, 800),
+              zoom: 1,
             }}
           >
             <Scene ref={setParticles} />
@@ -237,7 +242,6 @@ export default function TheIntention({
         <div ref={ref2}>
           <Inquiries {...data.contactSection} />
         </div>
-
         <div ref={ref3}>
           <Present {...data.contactSection} />
         </div>
