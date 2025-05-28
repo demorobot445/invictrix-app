@@ -6,13 +6,13 @@ import { useLenis } from "lenis/react";
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import { Points, ShaderMaterial, Vector3 } from "three";
-import { Canvas } from "@react-three/fiber";
-import Scene from "../src/particles/components/Scene";
 import useMobile from "@/hooks/useMobile";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import type { IntentionPageData } from "@/types/invictrix";
 import { fetchGraphQL } from "@/libs/api";
 import { INTENTIONPAGE_QUERY } from "@/libs/queries";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 export const getStaticProps = (async () => {
   const data: { intention: IntentionPageData } =

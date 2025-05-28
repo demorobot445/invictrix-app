@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import { Points, ShaderMaterial, Vector3 } from "three";
 import Scene from "../src/particles/components/Scene";
 import useMobile from "@/hooks/useMobile";
-import { OrthographicCamera } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { fetchGraphQL } from "@/libs/api";
 import { HOMEPAGE_QUERY } from "@/libs/queries";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
@@ -101,9 +101,11 @@ export default function Home({
 
       if (!particles) return;
 
-      const x = isMobile ? 250 : 900;
-      const scale = isMobile ? 0.4 : 0.5;
-      const rotationY = isMobile ? -Math.PI * 2 : -Math.PI * 2.2;
+      // const x = isMobile ? 250 : 900;
+      const x = -1000;
+      const scale = isMobile ? 0.4 : 0.6;
+      // const rotationY = isMobile ? -Math.PI * 2 : -Math.PI * 2.2;
+      const rotationY = -Math.PI * 2.7;
       particles.position.set(x, -50, 0);
       particles.rotation.set(0, rotationY, 0);
       particles.scale.set(scale, scale, scale);
@@ -118,16 +120,17 @@ export default function Home({
       });
 
       particlesTimeline.to(particles.position, {
-        x: () => (isMobile ? -100 : -350),
+        // x: () => (isMobile ? 100 : 350),
+        x: () => 300,
         ease: "power1.inOut",
       });
 
       particlesTimeline.to(
         particles.scale,
         {
-          x: 1,
-          y: 1,
-          z: 1,
+          x: 0.8,
+          y: 0.8,
+          z: 0.8,
           ease: "power1.inOut",
         },
         "<",
@@ -136,14 +139,14 @@ export default function Home({
       particlesTimeline.to(
         particles.rotation,
         {
-          y: Math.PI * 0.1,
+          y: -Math.PI * 1.1,
           ease: "power1.inOut",
         },
         "<",
       );
 
       particlesTimeline.to(particles.position, {
-        x: 280,
+        x: -150,
         ease: "power1.inOut",
       });
 
