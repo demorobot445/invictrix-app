@@ -3,9 +3,11 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
-import { data } from "./data";
+import { Essence, EssenceHeading } from "@/types/invictrix";
 
-const VideoReveal = () => {
+type Props = { data: Essence[]; heading: EssenceHeading };
+
+const VideoReveal: React.FC<Props> = ({ data, heading }) => {
   const container = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -24,37 +26,40 @@ const VideoReveal = () => {
             isDesktop: boolean;
           };
 
-          gsap.set(".card-1", { y: innerHeight, opacity: 0 });
-          gsap.set(".card-2", { y: innerHeight, opacity: 0 });
-          gsap.set(".card-3", { y: innerHeight, opacity: 0 });
-          gsap.set(".media-1", { opacity: 0 });
-          gsap.set(".media-2", { opacity: 0 });
-          gsap.set(".media-3", { opacity: 0 });
+          data.forEach((_elem, index) => {
+            if (index !== 0) {
+              gsap.set(`.card-${index}`, {
+                y: isMobile ? 0 : innerHeight,
+                opacity: 0,
+              });
+              gsap.set(`.media-${index}`, { opacity: 0 });
+            }
+          });
 
-          const animation = gsap
-            .timeline()
-            .addLabel("start")
-            .to(".card-0", { y: -innerHeight, opacity: 0 })
-            .to(".media-0", { opacity: 0 }, "<")
-            .to(".head-0", { y: isMobile ? -28 : -40 }, "<")
-            .to(".card-1", { y: 0, opacity: 1 })
-            .to(".media-1", { opacity: 1 }, "<")
-            .to(".head-1", { y: isMobile ? -28 : -40 }, "<")
-            .addLabel("second")
-            .to(".card-1", { y: -innerHeight, opacity: 0 })
-            .to(".media-1", { opacity: 0 }, "<")
-            .to(".head-1", { y: isMobile ? -56 : -80 }, "<")
-            .to(".card-2", { y: 0, opacity: 1 })
-            .to(".media-2", { opacity: 1 }, "<")
-            .to(".head-2", { y: isMobile ? -56 : -80 }, "<")
-            .addLabel("third")
-            .to(".card-2", { y: -innerHeight, opacity: 0 })
-            .to(".media-2", { opacity: 0 }, "<")
-            .to(".head-2", { y: isMobile ? -84 : -120 }, "<")
-            .to(".card-3", { y: 0, opacity: 1 })
-            .to(".media-3", { opacity: 1 }, "<")
-            .to(".head-3", { y: isMobile ? -84 : -120 }, "<")
-            .addLabel("fouth");
+          const animation = gsap.timeline().addLabel("start");
+
+          data.slice(0, data.length - 1).forEach((elem, index) => {
+            animation
+              .to(`.card-${index}`, {
+                y: isMobile ? 0 : -innerHeight,
+                opacity: 0,
+              })
+              .to(`.media-${index}`, { opacity: 0 }, "<")
+              .to(`.media-${index + 1}`, { opacity: 1 }, "<")
+              .to(
+                `.head-${index}`,
+                { y: isMobile ? -28 * (index + 1) : -40 * (index + 1) },
+                "<",
+              )
+              .to(`.card-${index + 1}`, { y: 0, opacity: 1 })
+
+              .to(
+                `.head-${index + 1}`,
+                { y: isMobile ? -28 * (index + 1) : -40 * (index + 1) },
+                "<",
+              )
+              .addLabel(`${elem.hightlightText}`);
+          });
 
           ScrollTrigger.create({
             trigger: container.current!,
@@ -80,16 +85,19 @@ const VideoReveal = () => {
       ref={container}
       className="body-care-section relative z-30 container mx-auto flex max-h-screen min-h-screen flex-col items-center justify-center"
     >
-      <h1 className="font-display absolute top-[75px] left-1/2 w-full -translate-x-1/2 text-center text-xl font-bold text-black uppercase lg:top-[18%] lg:text-4xl 2xl:top-[25%]">
-        it begins with{" "}
+      <h1 className="font-display absolute top-[75px] left-1/2 z-20 w-full -translate-x-1/2 text-center text-xl font-bold text-black uppercase lg:top-[18%] lg:text-4xl 2xl:top-[25%]">
+        {heading.headingFirstPart}{" "}
         <span className="text-dark-primary inline-flex h-[20px] flex-col overflow-hidden lg:h-[40px]">
-          <span className="head-0 inline-block">truth</span>
-          <span className="head-1 inline-block">feeling</span>
-          <span className="head-2 inline-block">trust</span>
-          <span className="head-3 inline-block">understanding</span>
+          {data.map(({ hightlightText }, index) => {
+            return (
+              <span key={index} className={`head-${index} inline-block`}>
+                {hightlightText}
+              </span>
+            );
+          })}
         </span>
         <br />
-        and becomes everything
+        {heading.headingSecondPart}
       </h1>
       <div className="absolute top-1/2 left-0 mt-[75px] aspect-video w-[calc(100%-24px)] -translate-y-1/2 px-3 lg:top-auto lg:left-auto lg:mt-0 lg:w-[420px] lg:translate-y-0 lg:px-0 2xl:w-[500px]">
         {data.map((elem, index) => {
@@ -102,13 +110,13 @@ const VideoReveal = () => {
               playsInline
               loop
             >
-              <source src={elem.mediaUrl} type="video/mp4" />
+              <source src={elem.video.url} type="video/mp4" />
             </video>
           );
         })}
       </div>
       {data.map((elem, index) => {
-        return <Card key={index} id={index} {...elem} />;
+        return <Card key={index} index={index} {...elem} />;
       })}
     </section>
   );

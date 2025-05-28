@@ -1,8 +1,11 @@
+import { IntentionContactSection } from "@/types/invictrix";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 
-const Inquiries = () => {
+type Props = IntentionContactSection & {};
+
+const Inquiries: React.FC<Props> = ({ heading, email }) => {
   const container = useRef<HTMLElement>(null);
 
   const { contextSafe } = useGSAP(() => {}, { scope: container });
@@ -19,18 +22,16 @@ const Inquiries = () => {
       ref={container}
       className="container mx-auto flex min-h-screen flex-col px-3 lg:flex-row lg:px-0"
     >
-      <div className="flex flex-col justify-center gap-7 lg:w-1/2">
+      <div className="flex flex-col items-center justify-center gap-2 lg:w-1/2 lg:gap-6">
         <h1
           onMouseEnter={handlePointerEnter}
           onMouseLeave={handlePointerLeave}
-          className="z-40 cursor-pointer text-center text-2xl text-white lg:text-4xl"
+          className="max-w-[300px] cursor-pointer text-center text-white lg:text-2xl"
         >
-          if you already hold a mark,
-          <br />
-          you may contact us directly.
+          {heading}
         </h1>
-        <p className="reveal-text font-display text-primary z-40 text-center text-2xl opacity-0 lg:text-4xl">
-          inquiries@invictrixventures.com
+        <p className="reveal-text font-display text-primary text-center text-2xl opacity-100 lg:text-4xl lg:opacity-0">
+          {email}
         </p>
       </div>
       <div className="lg:w-1/2"></div>

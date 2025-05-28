@@ -2,18 +2,53 @@ import Image from "next/image";
 import Input from "./Input";
 import Close from "./Close";
 import { useState } from "react";
+import { useFormik } from "formik";
 
 type Props = {
   handleClose: () => void;
 };
 
 const Form: React.FC<Props> = ({ handleClose }) => {
+  const [isButtonDisable, setIsButtonDisable] = useState<boolean>(false);
   const [status, setStatus] = useState<string>("");
 
-  const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setStatus("Send");
-  };
+  const formik = useFormik({
+    initialValues: {
+      salutation: "",
+      membershipOrAffiliations: "",
+      name: "",
+      familyName: "",
+      cityOfResidence: "",
+      yourProfession: "",
+      email: "",
+      discoverInvictrix: "",
+      number: "",
+      about: "",
+    },
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        setIsButtonDisable(true);
+        const response = await fetch("/api/godaddy-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        });
+        if (response.ok) {
+          setStatus("Send");
+          setTimeout(() => {
+            handleClose();
+            resetForm();
+            setIsButtonDisable(false);
+          }, 2000);
+        } else {
+          setStatus("Error");
+        }
+      } catch (err) {
+        console.error(err);
+        setStatus("Error");
+      }
+    },
+  });
 
   return (
     <div className="popup-cover pointer-events-none fixed top-1/2 left-1/2 z-50 flex h-full w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-black/60 opacity-0">
@@ -38,40 +73,54 @@ const Form: React.FC<Props> = ({ handleClose }) => {
           directly.
         </p>
         <form
-          onSubmit={handleSumbit}
+          onSubmit={formik.handleSubmit}
           className="mt-15 flex w-full flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-x-14 lg:gap-y-5"
         >
           <Input
+            onChange={formik.handleChange}
+            value={formik.values.salutation}
             label="Salutation"
             name="salutation"
             placeholder="Choose how you'd like to be addressed."
           />
           <Input
+            onChange={formik.handleChange}
+            value={formik.values.membershipOrAffiliations}
             label="Current Memberships or Affiliations"
-            name="membership-or-affiliations"
+            name="membershipOrAffiliations"
             placeholder="Clubs, concierge programs, or/and networks…"
           />
           <Input
+            onChange={formik.handleChange}
+            value={formik.values.name}
             label="Preferred Name"
             name="name"
             placeholder="The name you carry forward. "
           />
           <Input
+            onChange={formik.handleChange}
+            value={formik.values.familyName}
             label="Family Name"
-            name="family-name"
+            name="familyName"
             placeholder="Your inherited or chosen surname."
           />
           <Input
+            onChange={formik.handleChange}
+            value={formik.values.cityOfResidence}
             label="City of Residence"
-            name="city-of-residence"
+            name="cityOfResidence"
             placeholder="Where does your current chapter unfold? "
           />
           <Input
+            onChange={formik.handleChange}
+            value={formik.values.yourProfession}
             label="Your Profession"
-            name="your-profession"
+            name="yourProfession"
             placeholder="How you currently shape the world."
           />
           <Input
+            onChange={formik.handleChange}
+            value={formik.values.email}
             type="email"
             label="Email Address"
             name="email"
@@ -86,14 +135,19 @@ const Form: React.FC<Props> = ({ handleClose }) => {
             </label>
             <textarea
               rows={4}
-              className="border-primary border p-1 placeholder:text-[#7f7f7f]"
+              name="discoverInvictrix"
+              onChange={formik.handleChange}
+              value={formik.values.discoverInvictrix}
+              className="border-primary border p-1 text-white placeholder:text-[#7f7f7f] focus:outline-none"
               placeholder={"Referral, events, or article mention…"}
               id={`circle-discover-invictrix`}
             />
           </div>
           <Input
+            onChange={formik.handleChange}
+            value={formik.values.number}
             label="Phone Number"
-            name="phone-number"
+            name="number"
             placeholder="Should we need to connect by voice"
           />
 
@@ -106,7 +160,10 @@ const Form: React.FC<Props> = ({ handleClose }) => {
             </label>
             <textarea
               rows={6}
-              className="border-primary border p-1 placeholder:text-[#7f7f7f]"
+              onChange={formik.handleChange}
+              value={formik.values.about}
+              name="about"
+              className="border-primary border p-1 text-white placeholder:text-[#7f7f7f] focus:outline-none"
               placeholder={
                 "Share what brings you here and how Invictrix may support your journey…."
               }
@@ -115,11 +172,13 @@ const Form: React.FC<Props> = ({ handleClose }) => {
           </div>
           {status === "Send" && (
             <p className="text-primary col-span-2 text-center">
-              Your responses are held in confidence. We do not share or disclose
-              information under any circumstance.
+              Your responses are held in confidence.
+              <br />
+              We do not share or disclose information under any circumstance.
             </p>
           )}
           <button
+            disabled={isButtonDisable}
             type="submit"
             className="font-display col-span-2 mx-auto mt-10 min-h-40 w-56 cursor-pointer rounded-full text-2xl text-white"
           >
