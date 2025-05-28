@@ -23,13 +23,13 @@ const Inquiries = () => {
         <h1
           onMouseEnter={handlePointerEnter}
           onMouseLeave={handlePointerLeave}
-          className="cursor-pointer text-center text-2xl text-white lg:text-4xl"
+          className="z-40 cursor-pointer text-center text-2xl text-white lg:text-4xl"
         >
           if you already hold a mark,
           <br />
           you may contact us directly.
         </h1>
-        <p className="reveal-text font-display text-primary text-center text-2xl opacity-0 lg:text-4xl">
+        <p className="reveal-text font-display text-primary z-40 text-center text-2xl opacity-0 lg:text-4xl">
           inquiries@invictrixventures.com
         </p>
       </div>

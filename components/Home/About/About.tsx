@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <section className="about-section relative z-10 container mx-auto flex flex-col px-3 py-24 lg:px-0">
+    <section className="about-section relative z-30 container mx-auto flex flex-col px-3 py-24 lg:px-0">
       <div className="relative mb-12">
         <video
           className="h-[580px] w-full object-cover"

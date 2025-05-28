@@ -12,7 +12,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Points, ShaderMaterial, Vector3 } from "three";
-import Scene from "./particles/components/Scene";
+import Scene from "../src/particles/components/Scene";
+import useMobile from "@/hooks/useMobile";
+import { OrthographicCamera } from "@react-three/drei";
 
 export default function Home({
   headerRef,
@@ -31,31 +33,12 @@ export default function Home({
     setDimensions({ x: window.innerWidth, y: window.innerHeight });
   }, []);
 
+  const { isMobile } = useMobile();
   const [particles, setParticles] = useState<Points | null>(null);
   const refHero = useRef<HTMLDivElement>(null);
   const refAbout = useRef<HTMLDivElement>(null);
+  const refVideo = useRef<HTMLDivElement>(null);
 
-  // Function to manipulate the particles
-  // const testParticleManipulation = () => {
-  //   if (particlesRef.current) {
-  //     // Rotate the particles
-  //     particlesRef.current.rotation.y += Math.PI / 4;
-
-  //     // Access the material if needed
-  //     // const material = particlesRef.current.material as ShaderMaterial;
-  //     // if (material && material.uniforms) {
-  //     //   // Example: change a uniform value if it exists
-  //     //   if (material.uniforms.uDisperse) {
-  //     //     material.uniforms.uDisperse.value = 0.5;
-  //     //     material.uniformsNeedUpdate = true;
-  //     //   }
-  //     // }
-  //   } else {
-  //     console.log("Particles ref not available yet");
-  //   }
-  // };
-
-  // Try multiple times to manipulate the particles to ensure the ref is available
   useEffect(() => {
     lenis?.start();
   }, [lenis]);
@@ -98,33 +81,49 @@ export default function Home({
 
       if (!particles) return;
 
-      particles.position.set(900, 0, 0);
-      particles.rotation.set(0, -Math.PI * 2.2, 0);
+      const x = isMobile ? 250 : 900;
+      const scale = isMobile ? 0.4 : 0.5;
+      const rotationY = isMobile ? -Math.PI * 2 : -Math.PI * 2.2;
+      particles.position.set(x, -50, 0);
+      particles.rotation.set(0, rotationY, 0);
+      particles.scale.set(scale, scale, scale);
 
       const material = particles.material as ShaderMaterial;
       const particlesTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: refHero.current,
           scrub: true,
+          invalidateOnRefresh: true,
         },
       });
 
       particlesTimeline.to(particles.position, {
-        x: -350,
+        x: () => (isMobile ? -100 : -350),
         ease: "power1.inOut",
       });
 
       particlesTimeline.to(
+        particles.scale,
+        {
+          x: 1,
+          y: 1,
+          z: 1,
+          ease: "power1.inOut",
+        },
+        "<",
+      );
+
+      particlesTimeline.to(
         particles.rotation,
         {
-          y: 0,
+          y: Math.PI * 0.1,
           ease: "power1.inOut",
         },
         "<",
       );
 
       particlesTimeline.to(particles.position, {
-        x: 0,
+        x: 280,
         ease: "power1.inOut",
       });
 
@@ -132,11 +131,28 @@ export default function Home({
         scrollTrigger: {
           trigger: refAbout.current,
           scrub: true,
+          invalidateOnRefresh: true,
         },
       });
 
       tl2.to(material.uniforms.uDisperse, {
         value: 1,
+        ease: "power1.inOut",
+        onUpdate: () => {
+          if (material) material.uniformsNeedUpdate = true;
+        },
+      });
+
+      const tl3 = gsap.timeline({
+        scrollTrigger: {
+          trigger: refAbout.current,
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      tl3.to(material.uniforms.uOpacity, {
+        value: 0,
         ease: "power1.inOut",
         onUpdate: () => {
           if (material) material.uniformsNeedUpdate = true;
@@ -154,8 +170,9 @@ export default function Home({
       </Head>
       <main ref={container} className="relative w-full bg-black">
         <Background />
-        <div className="fixed inset-0 h-screen bg-transparent">
+        <div className="pointer-events-auto fixed inset-0 z-20 h-screen bg-transparent">
           <Canvas
+            gl={{ antialias: true }}
             camera={{
               fov: 50,
               far: 6000,
@@ -173,10 +190,12 @@ export default function Home({
         <div ref={refAbout}>
           <About />
         </div>
-        <VideoReveal />
+        <div ref={refVideo}>
+          <VideoReveal />
+        </div>
         <div className="my-2 flex w-full items-center justify-center">
           <Link
-            className="font-display text-center text-2xl uppercase underline underline-offset-2"
+            className="font-display z-40 text-center text-2xl uppercase underline underline-offset-2"
             href="/the-circle"
           >
             continue to the circle

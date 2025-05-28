@@ -33,28 +33,28 @@ const EnterCircle = () => {
       <div className="container mx-auto flex min-h-screen flex-col px-3 lg:flex-row lg:px-0">
         <div className="lg:w-[60%]"></div>
         <div className="flex flex-col justify-center gap-7 lg:w-[40%]">
-          <h1 className="text-primary font-display text-2xl lg:text-3xl">
-            Not all who visit are meant 10 stay.
+          <h1 className="text-primary font-display z-40 text-2xl lg:text-3xl">
+            Not all who visit are meant to stay.
             <br />
             But clarity of purpose whispers louder than status.
           </h1>
 
-          <p className="text-2xl text-white lg:text-3xl">
+          <p className="z-40 text-2xl text-white lg:text-3xl">
             Invictrix exists for those navigating their legacy with elegance,
             emotions, and precision.
           </p>
 
-          <p className="text-2xl text-white lg:text-3xl">
+          <p className="z-40 text-2xl text-white lg:text-3xl">
             If you believe you belong within this circle, begin here with
             intention.
           </p>
 
-          <p className="text-2xl text-white lg:text-3xl">
+          <p className="z-40 text-2xl text-white lg:text-3xl">
             Speak not of who you are, but of what you seek to become
           </p>
           <button
             onClick={handleClick}
-            className="font-display mx-auto h-36 w-36 min-w-36 cursor-pointer rounded-full text-2xl text-white"
+            className="font-display z-40 mx-auto h-36 w-36 min-w-36 cursor-pointer rounded-full text-2xl text-white"
           >
             <Image
               className="h-full w-full object-contain"

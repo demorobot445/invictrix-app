@@ -9,7 +9,8 @@ import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import { Points, ShaderMaterial, Vector3 } from "three";
 import { Canvas } from "@react-three/fiber";
-import Scene from "./particles/components/Scene";
+import Scene from "../src/particles/components/Scene";
+import useMobile from "@/hooks/useMobile";
 
 export default function TheIntention() {
   const lenis = useLenis();
@@ -23,6 +24,7 @@ export default function TheIntention() {
   const ref2 = useRef<HTMLDivElement>(null);
   const ref3 = useRef<HTMLDivElement>(null);
 
+  const { isMobile, screenWidth } = useMobile();
   const [particles, setParticles] = useState<Points | null>(null);
   const [dimensions, setDimensions] = useState<{ x: number; y: number }>({
     x: 0,
@@ -35,6 +37,13 @@ export default function TheIntention() {
   useGSAP(
     () => {
       if (!particles) return;
+
+      particles.position.set(-1500, -50, 0);
+
+      if (isMobile) {
+        const scale = 0.7;
+        particles.scale.set(scale, scale, scale);
+      }
 
       const scrub = true;
 
@@ -49,8 +58,15 @@ export default function TheIntention() {
         },
       });
 
+      const getWidth = () => {
+        console.log("width: ", screenWidth, isMobile, screenWidth <= 1440);
+        if (screenWidth <= 768) return -100;
+        if (screenWidth <= 1440) return -250;
+        return -200;
+      };
+
       t1.to(particles.position, {
-        x: -200,
+        x: getWidth,
         ease: "power1.inOut",
         immediateRender: false,
       });
@@ -58,7 +74,21 @@ export default function TheIntention() {
       t1.to(
         particles.rotation,
         {
-          y: -Math.PI,
+          y: -Math.PI * 0.9,
+          ease: "power1.inOut",
+          immediateRender: false,
+        },
+        "<",
+      );
+
+      const scale = isMobile ? 0.6 : 0.8;
+      t1.to(
+        particles.scale,
+        {
+          // y: -Math.PI,
+          x: scale,
+          y: scale,
+          z: scale,
           ease: "power1.inOut",
           immediateRender: false,
         },
@@ -75,8 +105,15 @@ export default function TheIntention() {
         },
       });
 
+      const getX = () => {
+        if (screenWidth <= 768) return 100;
+        if (screenWidth <= 1440) return 250;
+        return 200;
+      };
+
       t2.to(particles.position, {
-        x: 200,
+        // x: () => (isMobile ? 100 : 200),
+        x: getX,
         ease: "power1.inOut",
         immediateRender: false,
       });
@@ -84,7 +121,20 @@ export default function TheIntention() {
       t2.to(
         particles.rotation,
         {
-          y: 0,
+          y: -Math.PI * 0.1,
+          ease: "power1.inOut",
+          immediateRender: false,
+        },
+        "<",
+      );
+
+      const t2Scale = isMobile ? 0.7 : 1;
+      t2.to(
+        particles.scale,
+        {
+          x: t2Scale,
+          y: t2Scale,
+          z: t2Scale,
           ease: "power1.inOut",
           immediateRender: false,
         },
@@ -118,6 +168,25 @@ export default function TheIntention() {
         },
         "<",
       );
+
+      t3.to(
+        material.uniforms.uOpacity,
+        {
+          value: 0,
+          ease: "power1.inOut",
+          immediateRender: false,
+          onUpdate: () => {
+            if (material) material.uniformsNeedUpdate = true;
+          },
+        },
+        "<",
+      );
+
+      t3.to(particles.position, {
+        x: 0,
+        ease: "power1.inOut",
+        immediateRender: false,
+      });
     },
 
     { scope: container, dependencies: [particles] },

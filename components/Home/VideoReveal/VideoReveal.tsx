@@ -78,9 +78,9 @@ const VideoReveal = () => {
   return (
     <section
       ref={container}
-      className="body-care-section relative container mx-auto flex max-h-screen min-h-screen flex-col items-center justify-center"
+      className="body-care-section relative z-30 container mx-auto flex max-h-screen min-h-screen flex-col items-center justify-center"
     >
-      <h1 className="font-display absolute top-[75px] left-1/2 z-20 w-full -translate-x-1/2 text-center text-xl font-bold text-black uppercase lg:top-[18%] lg:text-4xl 2xl:top-[25%]">
+      <h1 className="font-display absolute top-[75px] left-1/2 w-full -translate-x-1/2 text-center text-xl font-bold text-black uppercase lg:top-[18%] lg:text-4xl 2xl:top-[25%]">
         it begins with{" "}
         <span className="text-dark-primary inline-flex h-[20px] flex-col overflow-hidden lg:h-[40px]">
           <span className="head-0 inline-block">truth</span>
@@ -96,7 +96,7 @@ const VideoReveal = () => {
           return (
             <video
               key={index}
-              className={`media-${index} absolute top-0 z-10 h-full w-full object-cover`}
+              className={`media-${index} absolute top-0 h-full w-full object-cover`}
               muted
               autoPlay
               playsInline
