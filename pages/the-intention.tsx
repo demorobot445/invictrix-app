@@ -11,8 +11,10 @@ import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import type { IntentionPageData } from "@/types/invictrix";
 import { fetchGraphQL } from "@/libs/api";
 import { INTENTIONPAGE_QUERY } from "@/libs/queries";
+import { Canvas } from "@react-three/fiber";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Scene from "@/src/particles/components/Scene";
 
 export const getStaticProps = (async () => {
   const data: { intention: IntentionPageData } =
@@ -130,7 +132,6 @@ export default function TheIntention({
       };
 
       t2.to(particles.position, {
-        // x: () => (isMobile ? 100 : 200),
         x: getX,
         ease: "power1.inOut",
         immediateRender: false,
@@ -146,7 +147,7 @@ export default function TheIntention({
         "<",
       );
 
-      const t2Scale = isMobile ? 0.7 : 1;
+      const t2Scale = isMobile ? 0.7 : 0.8;
       t2.to(
         particles.scale,
         {
@@ -216,10 +217,30 @@ export default function TheIntention({
         <title>Invictrix - The Intention</title>
       </Head>
       <main className="w-full bg-black">
+        <div className="fixed inset-0 h-screen bg-transparent">
+          <Canvas
+            camera={{
+              fov: 50,
+              far: 6000,
+              near: 0.0001,
+              aspect: dimensions.x / dimensions.y,
+              position: new Vector3(0, 0, 800),
+            }}
+          >
+            <Scene ref={setParticles} />
+          </Canvas>
+        </div>
         <ReceiveIntention {...data.heroSection} />
-        <EnterCircle {...data.sectionTwo} />
-        <Inquiries {...data.contactSection} />
-        <Present {...data.contactSection} />
+        <div ref={ref1}>
+          <EnterCircle {...data.sectionTwo} />
+        </div>
+        <div ref={ref2}>
+          <Inquiries {...data.contactSection} />
+        </div>
+
+        <div ref={ref3}>
+          <Present {...data.contactSection} />
+        </div>
       </main>
     </>
   );

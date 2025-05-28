@@ -26,11 +26,11 @@ const Inquiries: React.FC<Props> = ({ heading, email }) => {
         <h1
           onMouseEnter={handlePointerEnter}
           onMouseLeave={handlePointerLeave}
-          className="max-w-[300px] cursor-pointer text-center text-white lg:text-2xl"
+          className="z-40 max-w-[300px] cursor-pointer text-center text-white lg:text-2xl"
         >
           {heading}
         </h1>
-        <p className="reveal-text font-display text-primary text-center text-2xl opacity-100 lg:text-4xl lg:opacity-0">
+        <p className="reveal-text font-display text-primary z-40 text-center text-2xl opacity-100 lg:text-4xl lg:opacity-0">
           {email}
         </p>
       </div>

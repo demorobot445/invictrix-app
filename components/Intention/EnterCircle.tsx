@@ -41,13 +41,13 @@ const EnterCircle: React.FC<Props> = ({
       <div className="container mx-auto flex min-h-screen flex-col px-3 lg:flex-row lg:px-0">
         <div className="lg:w-[60%]"></div>
         <div className="flex flex-col justify-center gap-2 lg:w-[40%] lg:gap-6">
-          <h1 className="text-primary font-display text-2xl font-bold lg:text-4xl">
+          <h1 className="text-primary font-display z-40 text-2xl font-bold lg:text-4xl">
             {heading}
           </h1>
           <div className="flex w-[99%] flex-col justify-center gap-2 lg:gap-6">
-            <p className="text-white lg:text-2xl">{paragraphOne}</p>
-            <p className="text-white lg:text-2xl">{paragraphTwo}</p>
-            <p className="text-white lg:text-2xl">{paragraphThree}</p>
+            <p className="z-40 text-white lg:text-2xl">{paragraphOne}</p>
+            <p className="z-40 text-white lg:text-2xl">{paragraphTwo}</p>
+            <p className="z-40 text-white lg:text-2xl">{paragraphThree}</p>
           </div>
           <button
             onClick={handleClick}
