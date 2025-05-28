@@ -79,7 +79,6 @@ export default function TheIntention({
       });
 
       const getWidth = () => {
-        console.log("width: ", screenWidth, isMobile, screenWidth <= 1440);
         if (screenWidth <= 768) return -100;
         if (screenWidth <= 1440) return -250;
         return -200;
@@ -94,7 +93,7 @@ export default function TheIntention({
       t1.to(
         particles.rotation,
         {
-          y: -Math.PI * 0.9,
+          y: -Math.PI * 1,
           ease: "power1.inOut",
           immediateRender: false,
         },
@@ -140,7 +139,7 @@ export default function TheIntention({
       t2.to(
         particles.rotation,
         {
-          y: -Math.PI * 0.1,
+          y: -Math.PI * 0.01,
           ease: "power1.inOut",
           immediateRender: false,
         },
