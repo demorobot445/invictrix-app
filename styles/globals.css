@@ -7,37 +7,40 @@
   --color-primary: #f2d38a;
   --color-dark-primary: #c6ac73;
 }
-body::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-body::-webkit-scrollbar-track {
-  background: #feeecb;
-}
-
-/* Handle */
-body::-webkit-scrollbar-thumb {
-  background: #f2d38a;
-}
-
-.scrollbar::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-.scrollbar::-webkit-scrollbar-track {
-  background: #feeecb;
-}
-
-/* Handle */
-.scrollbar::-webkit-scrollbar-thumb {
-  background: #f2d38a;
-}
 
 @media screen and (max-width: 800px) {
   .clip-menu {
     clip-path: inset(100% 0% 0% 0%);
     pointer-events: none;
+  }
+}
+
+@media screen and (min-width: 799px) {
+  body::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  body::-webkit-scrollbar-track {
+    background: #feeecb;
+  }
+
+  /* Handle */
+  body::-webkit-scrollbar-thumb {
+    background: #f2d38a;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  .scrollbar::-webkit-scrollbar-track {
+    background: #feeecb;
+  }
+
+  /* Handle */
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #f2d38a;
   }
 }

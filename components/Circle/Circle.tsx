@@ -145,7 +145,7 @@ const Circle: React.FC<Props> = ({
       ref={container}
       className="relative h-lvh w-full overflow-hidden bg-white perspective-dramatic"
     >
-      <div className="content absolute top-1/2 left-1/2 z-20 flex h-full w-full -translate-1/2 flex-col items-center justify-center gap-4 bg-black/30 p-3 lg:h-fit lg:w-fit lg:min-w-[1000px] lg:bg-black/80 lg:p-20">
+      <div className="content absolute top-1/2 left-1/2 z-20 flex h-fit w-fit min-w-[320px] -translate-1/2 flex-col items-center justify-center gap-4 bg-black/80 p-3 lg:min-w-[1000px] lg:p-20">
         <h1 className="font-display text-center text-4xl text-white lg:text-6xl">
           {contents[0].heading}
         </h1>
@@ -189,7 +189,7 @@ const Circle: React.FC<Props> = ({
           );
         })}
       </div>
-      <div className="image-scroller absolute inset-0 z-30 h-full w-full translate-x-full scale-0 overflow-hidden bg-white pt-[70px] opacity-0 lg:pt-[114px]">
+      <div className="image-scroller absolute inset-0 z-30 h-full w-full translate-x-full scale-0 overflow-hidden bg-white opacity-0 lg:pt-[114px]">
         <div className="scroll-card-grid relative flex h-full w-fit">
           {cards.map((elem, index) => {
             return (

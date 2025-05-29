@@ -25,6 +25,7 @@ const Input: React.FC<Props> = ({
         value={value}
         className="border-primary border p-1 text-white placeholder:text-[#7f7f7f] focus:outline-none"
         placeholder={placeholder}
+        required
         id={name}
         type={type}
       />

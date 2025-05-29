@@ -43,7 +43,7 @@ const Card: React.FC<Props> = ({
         </p>
         <div className="relative flex items-center justify-center">
           <p
-            className={`scroll-roman-${index} font-display absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-9xl text-white`}
+            className={`scroll-roman-${index} font-display absolute top-1/2 left-1/2 z-10 h-[98px] -translate-x-1/2 -translate-y-1/2 text-9xl text-white`}
           >
             {romanNumber}
           </p>

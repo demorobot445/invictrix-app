@@ -96,6 +96,7 @@ export default function Home({
         ScrollTrigger.create({
           toggleActions: "play none none reverse",
           animation,
+          trigger: ".about-section",
         });
       }
 

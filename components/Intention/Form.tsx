@@ -51,7 +51,10 @@ const Form: React.FC<Props> = ({ handleClose }) => {
   });
 
   return (
-    <div className="popup-cover pointer-events-none fixed top-1/2 left-1/2 z-50 flex h-full w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-black/60 opacity-0">
+    <div
+      data-lenis-prevent
+      className="popup-cover pointer-events-none fixed top-1/2 left-1/2 z-[999] flex h-full w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-black/60 opacity-0"
+    >
       <div className="border-primary popup scrollbar relative flex h-[95vh] w-[95%] max-w-[794px] scale-0 flex-col items-center overflow-auto border bg-black p-4 lg:w-[60%] lg:p-6">
         <button
           onClick={handleClose}

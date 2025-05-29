@@ -23,9 +23,9 @@ const Layout: React.FC<Props> = ({ children, headerRef }) => {
     () => {
       gsap
         .timeline()
-        .to(".logo", { yPercent: -100, delay: 0.5 })
+        .to(".logo", { opacity: 1, delay: 0.5 })
         .to(".lights", { opacity: 0.5, duration: 1.5 })
-        .to(".logo", { yPercent: -220, delay: 3 }, "<0.5")
+        .to(".logo", { opacity: 0, delay: 3 }, "<0.5")
         .to(".lights", { opacity: 0, duration: 1.5 }, "<")
         .to(".loader", { opacity: 0, duration: 0.5, pointerEvents: "none" });
     },

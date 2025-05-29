@@ -37,7 +37,7 @@ const Header = forwardRef<HTMLElement>((props, ref) => {
   return (
     <header
       ref={ref}
-      className={`fixed inset-0 z-40 flex h-fit w-full items-center justify-center ${pathname === "/the-circle" ? "bg-white lg:bg-transparent" : "bg-black"}`}
+      className={`fixed inset-0 z-[100] flex h-fit w-full items-center justify-center ${pathname === "/the-circle" ? "bg-white lg:bg-transparent" : "bg-black"}`}
     >
       <div
         className={`container mx-auto flex items-center justify-between px-4 py-4 lg:py-8`}
@@ -86,9 +86,22 @@ const Header = forwardRef<HTMLElement>((props, ref) => {
             height={50}
             width={50}
           /> */}
+
+          <div className="relative z-50 hidden h-9 w-9 flex-col items-center justify-center gap-[6px] lg:flex">
+            <span
+              className={`ham-line block h-0.5 w-6 transition-transform duration-300 ${pathname === "/the-circle" ? "bg-black" : "bg-white"}`}
+            />
+            <span
+              className={`ham-line block h-0.5 w-6 transition-opacity duration-300 ${pathname === "/the-circle" ? "bg-black" : "bg-white"}`}
+            />
+            <span
+              className={`ham-line block h-0.5 w-6 transition-transform duration-300 ${pathname === "/the-circle" ? "bg-black" : "bg-white"}`}
+            />
+          </div>
+
           <button
             onClick={handleClick}
-            className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-[6px] lg:pointer-events-none"
+            className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-[6px] lg:hidden"
           >
             <span
               className={`ham-line block h-0.5 w-6 transition-transform duration-300 ${
