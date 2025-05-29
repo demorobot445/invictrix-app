@@ -57,8 +57,10 @@ export default function TheIntention({
   useGSAP(
     () => {
       if (!particles) return;
+      const material = particles.material as ShaderMaterial;
 
       particles.position.set(-1500, -50, 0);
+      material.uniforms.uOpacity.value = 0;
 
       if (isMobile) {
         const scale = 0.7;
@@ -67,19 +69,18 @@ export default function TheIntention({
 
       const scrub = true;
 
-      const material = particles.material as ShaderMaterial;
       const t1 = gsap.timeline({
         scrollTrigger: {
           trigger: ref1.current,
           scrub,
-          // markers: true,
-          end: "top 20%",
+          start: () => (isMobile ? "60% 80%" : "top bottom"),
+          end: () => (isMobile ? "bottom bottom" : "bottom bottom"),
           invalidateOnRefresh: true,
         },
       });
 
       const getWidth = () => {
-        if (screenWidth <= 768) return -100;
+        if (screenWidth <= 768) return 0;
         if (screenWidth <= 1440) return -250;
         return -200;
       };
@@ -89,6 +90,16 @@ export default function TheIntention({
         ease: "power1.inOut",
         immediateRender: false,
       });
+
+      t1.to(
+        material.uniforms.uOpacity,
+        {
+          value: 1,
+          ease: "power1.inOut",
+          immediateRender: false,
+        },
+        "<",
+      );
 
       t1.to(
         particles.rotation,
@@ -125,7 +136,7 @@ export default function TheIntention({
       });
 
       const getX = () => {
-        if (screenWidth <= 768) return 100;
+        if (screenWidth <= 768) return 0;
         if (screenWidth <= 1440) return 250;
         return 200;
       };
@@ -200,11 +211,11 @@ export default function TheIntention({
         "<",
       );
 
-      t3.to(particles.position, {
-        x: 0,
-        ease: "power1.inOut",
-        immediateRender: false,
-      });
+      // t3.to(particles.position, {
+      //   x: 0,
+      //   ease: "power1.inOut",
+      //   immediateRender: false,
+      // });
     },
 
     { scope: container, dependencies: [particles] },
