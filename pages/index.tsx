@@ -121,17 +121,18 @@ export default function Home({
       });
 
       particlesTimeline.to(particles.position, {
-        // x: () => (isMobile ? 100 : 350),
-        x: () => 300,
+        x: () => (isMobile ? 0 : 300),
+        // x: () => 300,
         ease: "power1.inOut",
       });
 
+      const localScale = isMobile ? 0.6 : 0.8;
       particlesTimeline.to(
         particles.scale,
         {
-          x: 0.8,
-          y: 0.8,
-          z: 0.8,
+          x: localScale,
+          y: localScale,
+          z: localScale,
           ease: "power1.inOut",
         },
         "<",
@@ -147,7 +148,7 @@ export default function Home({
       );
 
       particlesTimeline.to(particles.position, {
-        x: -150,
+        x: isMobile ? 0 : -150,
         ease: "power1.inOut",
       });
 
