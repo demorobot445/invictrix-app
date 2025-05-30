@@ -113,7 +113,7 @@ export default function Home({
       const rotationY = isMobile ? -Math.PI * 5.5 : -Math.PI;
       particles.rotation.set(0, rotationY, 0);
 
-      const scale = isMobile ? 0.4 : 0.8;
+      const scale = isMobile ? 0.25 : 0.8;
       particles.scale.set(scale, scale, scale);
 
       const material = particles.material as ShaderMaterial;
