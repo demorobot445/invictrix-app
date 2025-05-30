@@ -106,14 +106,14 @@ export default function Home({
       if (!particles) return;
 
       const x = isMobile ? 0 : -300;
-      const y = isMobile ? 1000 : -50;
+      const y = isMobile ? 600 : -50;
 
       particles.position.set(x, y, 0);
 
       const rotationY = isMobile ? -Math.PI * 5.5 : -Math.PI;
       particles.rotation.set(0, rotationY, 0);
 
-      const scale = isMobile ? 0.25 : 0.8;
+      const scale = isMobile ? 0.3 : 0.8;
       particles.scale.set(scale, scale, scale);
 
       const material = particles.material as ShaderMaterial;
@@ -127,7 +127,7 @@ export default function Home({
         },
       });
 
-      const localScale = isMobile ? 0.6 : 0.8;
+      const localScale = isMobile ? 0.4 : 0.8;
       particlesTimeline.to(
         particles.scale,
         {
