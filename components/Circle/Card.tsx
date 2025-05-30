@@ -52,7 +52,7 @@ const Card: React.FC<Props> = ({
             muted
             loop
             playsInline
-            className={`aspect-video w-full object-cover lg:w-[40%]`}
+            className={`scroll-video-${index} aspect-video w-full object-cover grayscale-100 lg:w-[40%]`}
             src={video.url}
           />
         </div>

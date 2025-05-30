@@ -14,15 +14,15 @@ const Hero: React.FC<Props> = ({ heroSection, sectionThree, sectionTwo }) => {
   return (
     <section className="relative container mx-auto flex w-full flex-col items-center">
       <div className="mt-[70px] flex h-full min-h-[calc(100vh-70px)] w-full flex-col px-3 lg:mt-[114px] lg:min-h-[calc(100vh-114px)] lg:flex-row lg:p-0">
-        <div className="min-h-[50vh] lg:w-1/2"></div>
-        <div className="flex max-w-[550px] flex-col justify-center gap-4 lg:w-1/2 lg:gap-8">
+        <div className="lg:min-h-none min-h-[45vh] lg:w-1/2"></div>
+        <div className="flex max-w-[550px] flex-col items-center justify-center gap-4 lg:w-1/2 lg:items-start lg:gap-8">
           <h1 className="text-dark-primary font-display z-50 max-w-[500px] text-center text-4xl font-black lg:text-left lg:text-6xl">
             {heroSection.heading}
           </h1>
-          <p className="hero-text z-40 text-center text-white lg:text-left lg:text-2xl">
+          <p className="hero-text z-40 max-w-[280px] text-center text-white lg:max-w-none lg:text-left lg:text-2xl">
             {heroSection.paragraphOne}
           </p>
-          <p className="hero-text z-40 text-center text-white lg:text-left lg:text-2xl">
+          <p className="hero-text z-40 max-w-[280px] text-center text-white lg:max-w-none lg:text-left lg:text-2xl">
             {heroSection.paragraphTwo}
           </p>
         </div>

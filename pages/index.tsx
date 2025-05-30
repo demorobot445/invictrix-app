@@ -91,12 +91,14 @@ export default function Home({
           .to(matchingElements[0], { color: "#000000" }, "<")
           .to(matchingElements[1], { color: "#000000" }, "<")
           .to(lines, { backgroundColor: "#000000" }, "<")
-          .to(".hero-text", { color: "#000000" }, "<");
+          .to(".hero-text", { color: "#000000" }, "<")
+          .to(".scroll-text", { opacity: 0 }, "<");
 
         ScrollTrigger.create({
           toggleActions: "play none none reverse",
           animation,
-          trigger: ".about-section",
+          start: "center bottom",
+          trigger: ".about-video",
         });
       }
 
@@ -193,6 +195,9 @@ export default function Home({
         <title>Invictrix</title>
       </Head>
       <main ref={container} className="relative w-full bg-black">
+        <div className="scroll-text pointer-events-none fixed bottom-2 -left-4 z-40 -translate-y-[40px] rotate-90 lg:right-2 lg:left-auto">
+          <p className="text-white">Scroll Down</p>
+        </div>
         <Background />{" "}
         <div className="pointer-events-auto fixed inset-0 z-20 h-screen bg-transparent">
           <Canvas
@@ -227,7 +232,7 @@ export default function Home({
         </div>
         <div className="my-2 flex w-full items-center justify-center">
           <Link
-            className="font-display z-40 text-center text-2xl uppercase underline underline-offset-2"
+            className="font-display z-40 text-center uppercase underline underline-offset-2"
             href="/the-circle"
           >
             continue to the circle
