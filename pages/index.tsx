@@ -17,6 +17,7 @@ import { fetchGraphQL } from "@/libs/api";
 import { HOMEPAGE_QUERY } from "@/libs/queries";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
 import type { HomePageData } from "@/types/invictrix";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 export const getStaticProps = (async () => {
   const data: { home: HomePageData } = await fetchGraphQL(HOMEPAGE_QUERY);
@@ -104,13 +105,15 @@ export default function Home({
 
       if (!particles) return;
 
-      // const x = isMobile ? 250 : 900;
-      const x = -1000;
-      const scale = isMobile ? 0.4 : 0.6;
-      // const rotationY = isMobile ? -Math.PI * 2 : -Math.PI * 2.2;
-      const rotationY = -Math.PI * 3.0;
-      particles.position.set(x, -50, 0);
+      const x = isMobile ? 0 : -300;
+      const y = isMobile ? 1000 : -50;
+
+      particles.position.set(x, y, 0);
+
+      const rotationY = isMobile ? -Math.PI * 5.5 : -Math.PI;
       particles.rotation.set(0, rotationY, 0);
+
+      const scale = isMobile ? 0.4 : 0.8;
       particles.scale.set(scale, scale, scale);
 
       const material = particles.material as ShaderMaterial;
@@ -119,13 +122,9 @@ export default function Home({
           trigger: refHero.current,
           scrub: true,
           invalidateOnRefresh: true,
+          start: () => (isMobile ? "top bottom" : "top top"),
+          end: () => (isMobile ? "center bottom" : "center bottom"),
         },
-      });
-
-      particlesTimeline.to(particles.position, {
-        x: () => (isMobile ? 0 : 300),
-        // x: () => 300,
-        ease: "power1.inOut",
       });
 
       const localScale = isMobile ? 0.6 : 0.8;
@@ -137,38 +136,73 @@ export default function Home({
           z: localScale,
           ease: "power1.inOut",
         },
-        "<",
+        // "<",
       );
 
       particlesTimeline.to(
         particles.rotation,
         {
-          y: -Math.PI * 1.0,
+          y: () => (isMobile ? -Math.PI * 1.0 : -Math.PI * 2),
           ease: "power1.inOut",
         },
         "<",
       );
 
-      particlesTimeline.to(particles.position, {
-        x: isMobile ? 0 : -150,
-        ease: "power1.inOut",
-      });
-
+      particlesTimeline.to(
+        particles.position,
+        {
+          x: () => (isMobile ? 0 : 300),
+          y: () => (isMobile ? 0 : -50),
+          ease: "power1.inOut",
+          onUpdate: () => {
+            if (material) material.uniformsNeedUpdate = true;
+          },
+        },
+        "<",
+      );
       const tl2 = gsap.timeline({
         scrollTrigger: {
-          trigger: refAbout.current,
+          trigger: refHero.current,
           scrub: true,
           invalidateOnRefresh: true,
+          start: () => (isMobile ? "center 70%" : "center bottom"),
+          end: () => (isMobile ? "70% top" : "center top"),
         },
       });
 
-      tl2.to(material.uniforms.uDisperse, {
-        value: 1,
+      tl2.to(particles.position, {
+        x: () => (isMobile ? 600 : 0),
         ease: "power1.inOut",
-        onUpdate: () => {
-          if (material) material.uniformsNeedUpdate = true;
-        },
       });
+
+      if (isMobile) {
+        tl2.to(
+          particles.rotation,
+          {
+            y: -2 * Math.PI * 1.0,
+            ease: "power1.inOut",
+          },
+          "<",
+        );
+
+        tl2.to(
+          particles.position,
+          {
+            x: () => (isMobile ? 0 : -150),
+            ease: "power1.inOut",
+          },
+          // "-=40%",
+        );
+
+        tl2.to(
+          particles.rotation,
+          {
+            y: -Math.PI * 1.0,
+            ease: "power1.inOut",
+          },
+          "<",
+        );
+      }
 
       const tl3 = gsap.timeline({
         scrollTrigger: {
@@ -178,7 +212,23 @@ export default function Home({
         },
       });
 
-      tl3.to(material.uniforms.uOpacity, {
+      tl3.to(material.uniforms.uDisperse, {
+        value: 1,
+        ease: "power1.inOut",
+        onUpdate: () => {
+          if (material) material.uniformsNeedUpdate = true;
+        },
+      });
+
+      const tl4 = gsap.timeline({
+        scrollTrigger: {
+          trigger: refAbout.current,
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      tl4.to(material.uniforms.uOpacity, {
         value: 0,
         ease: "power1.inOut",
         onUpdate: () => {
