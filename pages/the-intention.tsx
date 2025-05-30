@@ -198,24 +198,39 @@ export default function TheIntention({
         "<",
       );
 
-      t3.to(
-        material.uniforms.uOpacity,
-        {
-          value: 0,
-          ease: "power1.inOut",
-          immediateRender: false,
-          onUpdate: () => {
-            if (material) material.uniformsNeedUpdate = true;
-          },
+      t3.to(material.uniforms.uDisperse, {
+        value: 0,
+        ease: "power1.inOut",
+        immediateRender: false,
+        onUpdate: () => {
+          if (material) material.uniformsNeedUpdate = true;
         },
-        "<",
-      );
+      });
 
-      // t3.to(particles.position, {
-      //   x: 0,
-      //   ease: "power1.inOut",
-      //   immediateRender: false,
-      // });
+      // t3.to(
+      //   material.uniforms.uOpacity,
+      //   {
+      //     value: 0,
+      //     ease: "power1.inOut",
+      //     immediateRender: false,
+      //     onUpdate: () => {
+      //       if (material) material.uniformsNeedUpdate = true;
+      //     },
+      //   },
+      //   "<",
+      // );
+
+      t3.to(particles.position, {
+        x: 0,
+        ease: "power1.inOut",
+        immediateRender: false,
+      });
+
+      t3.to(particles.position, {
+        x: 0,
+        ease: "power1.inOut",
+        immediateRender: false,
+      });
     },
 
     { scope: container, dependencies: [particles] },
@@ -242,7 +257,7 @@ export default function TheIntention({
               zoom: 1,
             }}
           >
-            <Scene ref={setParticles} />
+            <Scene ref={setParticles} disableHover={true} />
           </Canvas>
         </div>
         <ReceiveIntention {...data.heroSection} />

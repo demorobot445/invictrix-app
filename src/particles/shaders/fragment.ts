@@ -15,6 +15,7 @@ uniform float uOpacity; // Opacity of the particles
 uniform vec3 uPoint; // Point for radial gradient
 uniform float uCircleWidth; // Width of the central circle
 uniform float uCircleHeight; // Height of the central circle
+uniform float uPointerActive; // Controls whether hover effect is active
 varying float vDistanceToMouse;
 varying float vDistanceToCenter;
 

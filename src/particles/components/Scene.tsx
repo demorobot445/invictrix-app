@@ -9,12 +9,19 @@ import { forwardRef } from "react";
 
 interface SceneProps {
   customModelUrl?: string;
+  disableHover?: boolean;
 }
 
 const Scene = forwardRef<Points, SceneProps>((props, ref) => {
-  const { customModelUrl } = props;
+  const { customModelUrl, disableHover } = props;
 
-  return <Cloud ref={ref} customModelUrl={customModelUrl} />;
+  return (
+    <Cloud
+      ref={ref}
+      customModelUrl={customModelUrl}
+      disableHover={disableHover}
+    />
+  );
 });
 
 Scene.displayName = "Scene";

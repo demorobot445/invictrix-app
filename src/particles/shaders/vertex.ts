@@ -6,6 +6,7 @@ attribute vec3 aRand;
 uniform float uMorph2;
 uniform float uSize;
 uniform float uDisperse;
+uniform float uPointerActive;
 
 varying float vVisible;
 varying vec3 vPosition; // Pass position to fragment shader
@@ -16,14 +17,19 @@ varying float vDistanceToMouse;
 void main() {
 	vec4 modelPosition1 = modelMatrix * vec4(position, 1.0);
 	vec4 modelPosition2 = modelMatrix * vec4(position2, 1.0);
-
 	vec4 modelPosition = mix(modelPosition1, modelPosition2, uMorph2); 
 	
 	float hoverRadius = 40.0;
 	float hoveredParticleScale = 200.0;
-	float distanceToMouse =  length(uPoint.xy - modelPosition.xy);
+	float distanceToMouse = length(uPoint.xy - modelPosition.xy);
 	float normalizedDistanceToMouse = clamp(distanceToMouse / hoverRadius, 0.0, 1.0);
-	vDistanceToMouse = normalizedDistanceToMouse;
+	
+	// Only apply hover effect when uPointerActive is greater than 0
+	if (uPointerActive > 0.0) {
+		vDistanceToMouse = normalizedDistanceToMouse;
+	} else {
+		vDistanceToMouse = 1.0; // No hover effect
+	}
 
 
 

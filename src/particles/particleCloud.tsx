@@ -9,10 +9,11 @@ import { useTexture } from "@react-three/drei";
 
 interface CloudProps extends React.ComponentPropsWithoutRef<"group"> {
   customModelUrl?: string;
+  disableHover?: boolean;
 }
 
 const Cloud = forwardRef<Points, CloudProps>((props, forwardedRef) => {
-  const { customModelUrl, ...restProps } = props;
+  const { customModelUrl, disableHover = false, ...restProps } = props;
   const particlesRef = useRef<Points | null>(null);
   const planeRef = useRef<THREE.Mesh>(null);
   const targetPosition = useRef<THREE.Vector3>(new THREE.Vector3(0, 0, 0));
@@ -47,7 +48,7 @@ const Cloud = forwardRef<Points, CloudProps>((props, forwardedRef) => {
       colorD: { value: new THREE.Color(0xc7ac73) },
       uRadius: { value: 0.75 },
       uOpacity: { value: 1 },
-      uPointerActive: { value: 0.0 }, // Controls visibility of pointer circle
+      uPointerActive: { value: disableHover ? 0.0 : 0.0 }, // Controls visibility of pointer circle
       uGradientDirection: {
         value: new THREE.Vector3(0, 0.2, 0.0),
       },
@@ -146,8 +147,8 @@ const Cloud = forwardRef<Points, CloudProps>((props, forwardedRef) => {
         }}
         geometry={geometry}
         onPointerEnter={() => {
-          // Show pointer circle when mouse enters particle cloud
-          if (particlesRef.current) {
+          // Show pointer circle when mouse enters particle cloud (only if hover is not disabled)
+          if (particlesRef.current && !disableHover) {
             const material = particlesRef.current
               .material as THREE.ShaderMaterial;
             if (material?.uniforms?.uPointerActive) {
@@ -157,8 +158,8 @@ const Cloud = forwardRef<Points, CloudProps>((props, forwardedRef) => {
           }
         }}
         onPointerLeave={() => {
-          // Hide pointer circle when mouse leaves particle cloud
-          if (particlesRef.current) {
+          // Hide pointer circle when mouse leaves particle cloud (only if hover is not disabled)
+          if (particlesRef.current && !disableHover) {
             const material = particlesRef.current
               .material as THREE.ShaderMaterial;
             if (material?.uniforms?.uPointerActive) {
