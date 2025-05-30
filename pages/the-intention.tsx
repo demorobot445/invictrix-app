@@ -207,19 +207,6 @@ export default function TheIntention({
         },
       });
 
-      // t3.to(
-      //   material.uniforms.uOpacity,
-      //   {
-      //     value: 0,
-      //     ease: "power1.inOut",
-      //     immediateRender: false,
-      //     onUpdate: () => {
-      //       if (material) material.uniformsNeedUpdate = true;
-      //     },
-      //   },
-      //   "<",
-      // );
-
       t3.to(particles.position, {
         x: 0,
         ease: "power1.inOut",
@@ -242,7 +229,6 @@ export default function TheIntention({
         <title>Invictrix - The Intention</title>
       </Head>
       <main className="w-full bg-black">
-        {" "}
         <div className="fixed inset-0 h-screen bg-transparent">
           <Canvas
             orthographic
@@ -260,7 +246,9 @@ export default function TheIntention({
             <Scene ref={setParticles} disableHover={true} />
           </Canvas>
         </div>
-        <ReceiveIntention {...data.heroSection} />
+        <div className="z-50">
+          <ReceiveIntention {...data.heroSection} />
+        </div>
         <div ref={ref1}>
           <EnterCircle {...data.sectionTwo} />
         </div>

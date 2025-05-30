@@ -89,7 +89,7 @@ const Cloud = forwardRef<Points, CloudProps>((props, forwardedRef) => {
     async function createGeometry() {
       setModelLoaded(false);
 
-      const maxVertices = 300_000;
+      const maxVertices = 143_907;
       const crownModelUrl = customModelUrl || "/logo.glb";
       const crown = new Crown(crownModelUrl, maxVertices);
       await crown.init();
