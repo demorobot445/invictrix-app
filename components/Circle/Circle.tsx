@@ -137,7 +137,8 @@ const Circle: React.FC<Props> = ({
     gsap
       .timeline()
       .to(`.scroll-roman-${id}`, { opacity: 0 })
-      .to(`.scroll-content-${id}`, { opacity: 1 }, "<");
+      .to(`.scroll-content-${id}`, { opacity: 1 }, "<")
+      .to(`.scroll-video-${id}`, { filter: "grayscale(0)" }, "<");
   });
 
   return (
@@ -160,7 +161,7 @@ const Circle: React.FC<Props> = ({
         </h3>
         <button
           onClick={handlePathBegin}
-          className="cursor-pointer text-xl text-white lg:text-2xl"
+          className="cursor-pointer text-xl text-white underline underline-offset-2 lg:text-2xl"
         >
           {contents[0].button}
         </button>
@@ -179,8 +180,8 @@ const Circle: React.FC<Props> = ({
               }}
             >
               <Image
-                className="h-full w-full object-cover"
-                src={`/the-circle/${i}.jpg`}
+                className="h-full w-full object-cover grayscale-100"
+                src={`/the-circle/${i}.png`}
                 alt="placeholder-img"
                 width={1366}
                 height={689}

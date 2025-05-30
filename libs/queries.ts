@@ -39,7 +39,9 @@ export const HOMEPAGE_QUERY = `
         rightSide {
           id
           description
+          buttonActive
           button
+          href
         }
       }
     }

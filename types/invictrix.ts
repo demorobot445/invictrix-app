@@ -37,7 +37,9 @@ export interface EssenceLeftSide {
 export interface EssenceRightSide {
   id: string;
   description: string;
+  buttonActive: boolean;
   button: string;
+  href?: string;
 }
 
 export interface Essence {

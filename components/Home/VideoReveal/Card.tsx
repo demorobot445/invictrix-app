@@ -1,4 +1,6 @@
 import { Essence } from "@/types/invictrix";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 type Props = Essence & { index: number };
 
@@ -12,7 +14,7 @@ const Card: React.FC<Props> = ({ index, leftSide, rightSide }) => {
           <h2 className="font-display text-dark-primary mt-2 text-8xl lg:text-[10rem] lg:leading-[10rem]">
             {leftSide.romanNumber}
           </h2>
-          <p className="font-display -mt-4 max-w-[213px] text-2xl text-black lg:mt-0 lg:text-4xl">
+          <p className="font-display -mt-4 max-w-[142px] text-2xl text-black lg:mt-0 lg:max-w-[213px] lg:text-4xl">
             {leftSide.tagline}
           </p>
           <p className="font-display text-xl">{leftSide.subTagline}</p>
@@ -24,9 +26,17 @@ const Card: React.FC<Props> = ({ index, leftSide, rightSide }) => {
           <p className="text-sm text-black lg:text-xl">
             {rightSide.description}
           </p>
-          <button className="text-dark-primary border-dark-primary font-display w-fit border-b text-lg uppercase lg:text-2xl">
-            {rightSide.button}
-          </button>
+          {rightSide.buttonActive ? (
+            <Link
+              href={rightSide.href ? rightSide.href : "/"}
+              target="_blank"
+              className="text-dark-primary border-dark-primary font-display w-fit border-b text-lg uppercase lg:text-2xl"
+            >
+              {rightSide.button}
+            </Link>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>
