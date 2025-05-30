@@ -265,7 +265,7 @@ export default function Home({
               zoom: 1,
             }}
           >
-            <Scene ref={setParticles} />
+            <Scene ref={setParticles} disableHover={true} />
           </Canvas>
         </div>
         <div ref={refHero}>
