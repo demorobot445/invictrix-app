@@ -166,7 +166,7 @@ export default function Home({
           scrub: true,
           invalidateOnRefresh: true,
           start: () => (isMobile ? "center 70%" : "center bottom"),
-          end: () => (isMobile ? "70% top" : "center top"),
+          end: () => (isMobile ? "70% 30%" : "center top"),
         },
       });
 
@@ -209,6 +209,7 @@ export default function Home({
           trigger: refAbout.current,
           scrub: true,
           invalidateOnRefresh: true,
+          start: () => (isMobile ? "top 70%" : "top bottom"),
         },
       });
 

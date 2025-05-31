@@ -111,7 +111,7 @@ export default function TheIntention({
         "<",
       );
 
-      const scale = isMobile ? 0.6 : 0.8;
+      const scale = isMobile ? 0.45 : 0.8;
       t1.to(
         particles.scale,
         {
@@ -157,7 +157,7 @@ export default function TheIntention({
         "<",
       );
 
-      const t2Scale = isMobile ? 0.7 : 0.8;
+      const t2Scale = isMobile ? 0.45 : 0.8;
       t2.to(
         particles.scale,
         {
