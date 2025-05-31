@@ -92,8 +92,7 @@ export default function Home({
           .to(matchingElements[0], { color: "#000000" }, "<")
           .to(matchingElements[1], { color: "#000000" }, "<")
           .to(lines, { backgroundColor: "#000000" }, "<")
-          .to(".hero-text", { color: "#000000" }, "<")
-          .to(".scroll-text", { opacity: 0 }, "<");
+          .to(".hero-text", { color: "#000000" }, "<");
 
         ScrollTrigger.create({
           toggleActions: "play none none reverse",
@@ -247,10 +246,7 @@ export default function Home({
         <title>Invictrix</title>
       </Head>
       <main ref={container} className="relative w-full bg-black">
-        <div className="scroll-text pointer-events-none fixed bottom-2 -left-4 z-40 -translate-y-[40px] rotate-90 lg:right-2 lg:left-auto">
-          <p className="text-white">Scroll Down</p>
-        </div>
-        <Background />{" "}
+        <Background />
         <div className="pointer-events-auto fixed inset-0 z-20 h-screen bg-transparent">
           <Canvas
             gl={{ antialias: true }}

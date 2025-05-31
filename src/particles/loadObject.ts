@@ -1,11 +1,11 @@
-import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 export default async function loadObject(url: string) {
   let model = null;
   try {
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+    dracoLoader.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
     const loader = new GLTFLoader();
 
     loader.setDRACOLoader(dracoLoader);
@@ -14,7 +14,6 @@ export default async function loadObject(url: string) {
 
     return model.scene.children[0];
   } catch (ex) {
-    console.log(ex);
     return null;
   }
 }
