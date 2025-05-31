@@ -168,7 +168,7 @@ const Circle: React.FC<Props> = ({
       </div>
       <div
         style={{ transform: "rotate3d(0,1,0,3deg)" }}
-        className="main absolute inset-0 mt-[70px] grid h-[calc(100%-70px)] w-[100vh] -translate-x-48 scale-110 grid-cols-3 gap-x-0 gap-y-6 bg-white lg:mt-[114px] lg:h-[calc(100%-114px)] lg:w-full lg:translate-x-48 lg:scale-150 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-6"
+        className="main absolute inset-0 mt-[70px] grid h-[calc(100%-70px)] w-[100vh] -translate-x-48 scale-110 grid-cols-3 gap-x-0 gap-y-2 bg-white lg:mt-[114px] lg:h-[calc(100%-114px)] lg:w-full lg:translate-x-48 lg:scale-150 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-6"
       >
         {[...Array(12)].map((_, i) => {
           return (
