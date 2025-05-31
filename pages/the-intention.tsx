@@ -73,8 +73,8 @@ export default function TheIntention({
         scrollTrigger: {
           trigger: ref1.current,
           scrub,
-          start: () => (isMobile ? "60% 80%" : "top bottom"),
-          end: () => (isMobile ? "bottom bottom" : "bottom bottom"),
+          start: () => (isMobile ? "40% 80%" : "top bottom"),
+          end: () => (isMobile ? "bottom 80%" : "bottom bottom"),
           invalidateOnRefresh: true,
         },
       });
@@ -87,7 +87,7 @@ export default function TheIntention({
 
       t1.to(particles.position, {
         x: getWidth,
-        ease: "power1.inOut",
+        ease: "power3.out",
         immediateRender: false,
       });
 
@@ -95,7 +95,6 @@ export default function TheIntention({
         material.uniforms.uOpacity,
         {
           value: 1,
-          ease: "power1.inOut",
           immediateRender: false,
         },
         "<",
@@ -105,7 +104,6 @@ export default function TheIntention({
         particles.rotation,
         {
           y: -Math.PI * 1,
-          ease: "power1.inOut",
           immediateRender: false,
         },
         "<",
@@ -119,7 +117,6 @@ export default function TheIntention({
           x: scale,
           y: scale,
           z: scale,
-          ease: "power1.inOut",
           immediateRender: false,
         },
         "<",
@@ -198,7 +195,7 @@ export default function TheIntention({
         "<",
       );
 
-      t3.to(material.uniforms.uDisperse, {
+      t3.to(material.uniforms.uOpacity, {
         value: 0,
         ease: "power1.inOut",
         immediateRender: false,
