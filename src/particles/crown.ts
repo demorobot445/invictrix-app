@@ -6,7 +6,6 @@ class Crown extends MeshObject {
 
     const scale = 25;
     if (result) {
-      console.log(result.geometry.attributes.position.count);
       result.geometry.scale(scale, scale, scale);
       // result.geometry.translate(20, -200, 0);
       result.geometry.rotateX(Math.PI / 2);

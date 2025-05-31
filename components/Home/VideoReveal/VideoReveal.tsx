@@ -99,7 +99,7 @@ const VideoReveal: React.FC<Props> = ({ data, heading }) => {
         <br />
         {heading.headingSecondPart}
       </h1>
-      <div className="absolute top-1/2 left-0 mt-[75px] aspect-video w-[calc(100%-24px)] -translate-y-1/2 px-3 lg:top-auto lg:left-auto lg:mt-0 lg:w-[420px] lg:translate-y-0 lg:px-0 2xl:w-[500px]">
+      <div className="absolute top-[60px] left-0 mt-[75px] aspect-video w-[calc(100%-24px)] px-3 lg:top-auto lg:left-auto lg:mt-0 lg:w-[420px] lg:translate-y-0 lg:px-0 2xl:w-[500px]">
         {data.map((elem, index) => {
           return (
             <video
