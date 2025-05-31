@@ -7,7 +7,33 @@ const About: React.FC<Props> = ({ video }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleClick = () => {
-    videoRef.current?.requestFullscreen();
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
+    // Try the standard Fullscreen API
+    if (videoElement.requestFullscreen) {
+      videoElement.requestFullscreen().catch((err) => {
+        console.error("Fullscreen request failed:", err);
+      });
+    }
+    // iOS Safari fallback
+    else if ((videoElement as any).webkitEnterFullscreen) {
+      (videoElement as any).webkitEnterFullscreen();
+    }
+    // Older Safari/Chrome variants
+    else if ((videoElement as any).webkitRequestFullscreen) {
+      (videoElement as any).webkitRequestFullscreen();
+    }
+    // Firefox
+    else if ((videoElement as any).mozRequestFullScreen) {
+      (videoElement as any).mozRequestFullScreen();
+    }
+    // Internet Explorer/Edge
+    else if ((videoElement as any).msRequestFullscreen) {
+      (videoElement as any).msRequestFullscreen();
+    } else {
+      console.warn("Fullscreen API not supported on this device.");
+    }
   };
 
   return (
