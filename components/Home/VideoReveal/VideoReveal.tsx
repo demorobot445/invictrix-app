@@ -83,7 +83,7 @@ const VideoReveal: React.FC<Props> = ({ data, heading }) => {
   return (
     <section
       ref={container}
-      className="body-care-section relative z-30 container mx-auto flex max-h-screen min-h-screen flex-col items-center justify-center"
+      className="body-care-section relative z-30 container mx-auto flex max-h-screen min-h-screen flex-col items-center justify-center border-2"
     >
       <h1 className="font-display absolute top-[75px] left-1/2 z-20 w-full -translate-x-1/2 text-center text-xl font-bold text-black uppercase lg:top-[18%] lg:text-4xl 2xl:top-[25%]">
         {heading.headingFirstPart}{" "}

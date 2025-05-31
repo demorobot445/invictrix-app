@@ -208,7 +208,7 @@ export default function Home({
           trigger: refAbout.current,
           scrub: true,
           invalidateOnRefresh: true,
-          start: () => (isMobile ? "top 70%" : "top bottom"),
+          start: () => (isMobile ? "70% bottom" : "70% bottom"),
         },
       });
 
