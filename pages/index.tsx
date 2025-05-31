@@ -97,7 +97,7 @@ export default function Home({
         ScrollTrigger.create({
           toggleActions: "play none none reverse",
           animation,
-          start: "center bottom",
+          start: "80% bottom",
           trigger: ".about-video",
         });
       }
