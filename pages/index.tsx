@@ -92,12 +92,13 @@ export default function Home({
           .to(matchingElements[0], { color: "#000000" }, "<")
           .to(matchingElements[1], { color: "#000000" }, "<")
           .to(lines, { backgroundColor: "#000000" }, "<")
-          .to(".hero-text", { color: "#000000" }, "<");
+          .to(".hero-text", { color: "#000000" }, "<")
+          .to(".scroll-text", { opacity: 0 }, "<");
 
         ScrollTrigger.create({
           toggleActions: "play none none reverse",
           animation,
-          start: "80% bottom",
+          start: "center bottom",
           trigger: ".about-video",
         });
       }
@@ -165,7 +166,7 @@ export default function Home({
           scrub: true,
           invalidateOnRefresh: true,
           start: () => (isMobile ? "center 70%" : "center bottom"),
-          end: () => (isMobile ? "70% 30%" : "center top"),
+          end: () => (isMobile ? "70% top" : "center top"),
         },
       });
 
@@ -208,7 +209,6 @@ export default function Home({
           trigger: refAbout.current,
           scrub: true,
           invalidateOnRefresh: true,
-          start: () => (isMobile ? "70% bottom" : "70% bottom"),
         },
       });
 
@@ -246,7 +246,10 @@ export default function Home({
         <title>Invictrix</title>
       </Head>
       <main ref={container} className="relative w-full bg-black">
-        <Background />
+        <div className="scroll-text pointer-events-none fixed bottom-2 -left-4 z-40 -translate-y-[40px] rotate-90 lg:right-2 lg:left-auto">
+          <p className="text-white">Scroll Down</p>
+        </div>
+        <Background />{" "}
         <div className="pointer-events-auto fixed inset-0 z-20 h-screen bg-transparent">
           <Canvas
             gl={{ antialias: true }}

@@ -49,54 +49,47 @@ void main() {
 		globalDist = dot(normalize(vLocalPosition.xyz), normalize(uGradientDirection)) * 0.5 + 0.5; // Map from [-1,1] to [0,1]
 		gradientFactor = smoothstep(0.0, uRadius, globalDist);
 		float globalBrightness = 1.0 - smoothstep(0.0, 1.0, (length(vLocalPosition.xyz) / uGlobalRadius));
-	
-	vec3 finalColor = colorA;
+		vec3 finalColor = colorA;
 
-	// When uDisperse is high, increase the brightness and make it more uniform
-	float disperseBoost = mix(0.0, 0.8, uDisperse); // Additional brightness based on dispersion
-	float baseMultiplier = mix(0.2, 0.6, uDisperse); // Increase base brightness with dispersion
+	// Constant brightness without disperse effects
+	float baseMultiplier = 0.2; // Constant base brightness
 	
-	// Combined brightness with dispersion effect
-	float brightness = localBrightness * (baseMultiplier + globalBrightness * mix(0.5, 0.9, uDisperse)) + disperseBoost;
+	// Combined brightness without dispersion effect
+	float brightness = localBrightness * (baseMultiplier + globalBrightness * 0.5);
 	
-	// Apply brightness to color with increased intensity when dispersed
-	float intensityMultiplier = mix(4.0, 6.0, uDisperse); // More intensity when dispersed
+	// Apply brightness to color with constant intensity
+	float intensityMultiplier = 4.0; // Constant intensity
 	finalColor = finalColor * brightness * intensityMultiplier;
-	
-	// Sample local texture for particle mask
+		// Sample local texture for particle mask
 	vec4 particleTexture = texture2D(uTexture, uv);
 		// Sample global texture using normalized local position coordinates
 	// We scale by 0.5 and offset by 0.5 to center it
 	vec2 globalUV = (vLocalPosition.xy / uGlobalRadius) * 0.5 + 0.5;
 	vec4 globalTexture = texture2D(uTexture2, globalUV);
-		// Combine the particle color with the global texture
-	// When dispersed, reduce the effect of the global texture to keep particles visible
-	float globalTextureInfluence = mix(1.0, 0.5, uDisperse); 
+			vec3 finalRGB = finalColor * (1.0 - particleTexture.rgb);
 	
-	// Blend between global texture and a constant value of 1.0 based on dispersion
-	vec3 effectiveGlobalTexture = mix(globalTexture.rgb, vec3(1.0), uDisperse * 0.7);
-	
-	vec3 col = finalColor * (1.0 - particleTexture.rgb); 
-
-	vec3 finalRGB = finalColor * (1.0 - particleTexture.rgb); 
-
-	if(uDisperse >= 0.3) {
-		finalRGB = smoothstep(col, vec3(1.0, 0., 0.), vec3(uDisperse));
-	}
-	finalRGB = mix(colorB * 1.5, finalRGB, vDistanceToMouse);	// Make the center of the MODEL use colorB and blend with gradient
-	// Use vLocalPosition which is the model's local coordinates
-	// Offset the center downward by subtracting from Y coordinate
-	vec2 offsetCenter = vLocalPosition.xy - vec2(0.0, -80.0); // Move center down by 70 units
-	
-	// Create elliptical bounds using separate width and height controls
-	float normalizedX = offsetCenter.x / (uCircleWidth * 0.5);
-	float normalizedY = offsetCenter.y / (uCircleHeight * 0.5);
-	float ellipticalDistance = sqrt(normalizedX * normalizedX + normalizedY * normalizedY);
-	
-	if (ellipticalDistance <= 1.0) {
-		// Create smooth blend factor based on elliptical distance from center
-		float blendFactor = 1.0 - smoothstep(0.0, 1.0, ellipticalDistance);
-		finalRGB.xyz = mix(finalRGB.xyz, colorB * 1.5, blendFactor * 0.8);
+	// When particles are dispersed, use only colorA uniformly
+	if (uDisperse > 0.0) {
+		// Override all color effects and use only colorA when dispersed
+		finalRGB = colorA * 1.8 * brightness * intensityMultiplier * (1.0 - particleTexture.rgb);
+	} else {
+		// Normal behavior when not dispersed
+		finalRGB = mix(colorB * 1.5, finalRGB, vDistanceToMouse);	// Make the center of the MODEL use colorB and blend with gradient
+		
+		// Use vLocalPosition which is the model's local coordinates
+		// Offset the center downward by subtracting from Y coordinate
+		vec2 offsetCenter = vLocalPosition.xy - vec2(0.0, -80.0); // Move center down by 70 units
+		
+		// Create elliptical bounds using separate width and height controls
+		float normalizedX = offsetCenter.x / (uCircleWidth * 0.5);
+		float normalizedY = offsetCenter.y / (uCircleHeight * 0.5);
+		float ellipticalDistance = sqrt(normalizedX * normalizedX + normalizedY * normalizedY);
+		
+		if (ellipticalDistance <= 1.0) {
+			// Create smooth blend factor based on elliptical distance from center
+			float blendFactor = 1.0 - smoothstep(0.0, 1.0, ellipticalDistance);
+			finalRGB.xyz = mix(finalRGB.xyz, colorB * 1.5, blendFactor * 0.8);
+		}
 	}
 
 	gl_FragColor = vec4(finalRGB, particleTexture.a * uOpacity * 2.);
