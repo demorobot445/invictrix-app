@@ -30,7 +30,7 @@ const Inquiries: React.FC<Props> = ({ heading, email }) => {
         >
           {heading}
         </h1>
-        <p className="reveal-text font-display text-primary z-40 text-center text-2xl opacity-100 lg:text-4xl lg:opacity-0">
+        <p className="reveal-text font-display text-primary z-40 text-center opacity-100 lg:text-4xl lg:opacity-0">
           {email}
         </p>
       </div>
