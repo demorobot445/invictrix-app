@@ -173,6 +173,7 @@ export default function TheIntention({
           scrub,
           // markers: true,
           invalidateOnRefresh: true,
+          end: "80% bottom",
         },
       });
 
