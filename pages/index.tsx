@@ -106,11 +106,11 @@ export default function Home({
       if (!particles) return;
 
       const x = isMobile ? 0 : -300;
-      const y = isMobile ? 600 : -50;
+      const y = isMobile ? 550 : -50;
 
       particles.position.set(x, y, 0);
 
-      const rotationY = isMobile ? -Math.PI * 5.5 : -Math.PI;
+      const rotationY = isMobile ? -Math.PI * 5 : -Math.PI;
       particles.rotation.set(0, rotationY, 0);
 
       const scale = isMobile ? 0.3 : 0.8;
