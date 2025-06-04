@@ -166,16 +166,30 @@ export default function Home({
           scrub: true,
           invalidateOnRefresh: true,
           start: () => (isMobile ? "center 70%" : "center bottom"),
-          end: () => (isMobile ? "70% top" : "center top"),
+          end: () => (isMobile ? "70% 40%" : "center top"),
         },
       });
 
-      tl2.to(particles.position, {
-        x: () => (isMobile ? 600 : 0),
-        ease: "power1.inOut",
-      });
+      if (!isMobile) {
+        tl2.to(particles.position, {
+          x: -350,
+          ease: "power1.inOut",
+        });
 
-      if (isMobile) {
+        tl2.to(
+          particles.rotation,
+          {
+            y: -Math.PI,
+            ease: "power1.inOut",
+          },
+          "<",
+        );
+      } else {
+        tl2.to(particles.position, {
+          x: 350,
+          ease: "power1.inOut",
+        });
+
         tl2.to(
           particles.rotation,
           {
@@ -185,14 +199,10 @@ export default function Home({
           "<",
         );
 
-        tl2.to(
-          particles.position,
-          {
-            x: () => (isMobile ? 0 : -150),
-            ease: "power1.inOut",
-          },
-          // "-=40%",
-        );
+        tl2.to(particles.position, {
+          x: 0,
+          ease: "power1.inOut",
+        });
 
         tl2.to(
           particles.rotation,
@@ -202,6 +212,21 @@ export default function Home({
           },
           "<",
         );
+
+        const mbtl = gsap.timeline({
+          scrollTrigger: {
+            trigger: refHero.current,
+            scrub: true,
+            invalidateOnRefresh: true,
+            start: "70% 40%",
+            end: "85% 50%",
+          },
+        });
+
+        mbtl.to(particles.rotation, {
+          y: () => (isMobile ? -Math.PI * 2.0 : -Math.PI * 2),
+          ease: "power1.inOut",
+        });
       }
 
       const tl3 = gsap.timeline({
@@ -209,8 +234,23 @@ export default function Home({
           trigger: refAbout.current,
           scrub: true,
           invalidateOnRefresh: true,
+          start: () => (isMobile ? "top bottom" : "-50% bottom"),
         },
       });
+
+      tl3.to(particles.rotation, {
+        y: () => (isMobile ? -Math.PI * 2.0 : -Math.PI * 2),
+        ease: "power1.inOut",
+      });
+
+      tl3.to(
+        particles.position,
+        {
+          x: () => (isMobile ? 0 : 100),
+        },
+
+        "<",
+      );
 
       tl3.to(material.uniforms.uDisperse, {
         value: 1,
