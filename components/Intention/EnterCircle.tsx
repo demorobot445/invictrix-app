@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Form from "./Form";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -16,6 +16,9 @@ const EnterCircle: React.FC<Props> = ({
 }) => {
   const lenis = useLenis();
   const container = useRef<HTMLElement>(null);
+  const [status, setStatus] = useState<
+    undefined | "Loading" | "Success" | "Error"
+  >();
 
   const { contextSafe } = useGSAP(() => {}, { scope: container });
 
@@ -32,6 +35,7 @@ const EnterCircle: React.FC<Props> = ({
   });
 
   const handleClose = contextSafe(() => {
+    setStatus(undefined);
     gsap
       .timeline()
       .call(() => {
@@ -45,7 +49,7 @@ const EnterCircle: React.FC<Props> = ({
 
   return (
     <section ref={container}>
-      <Form handleClose={handleClose} />
+      <Form handleClose={handleClose} status={status} setStatus={setStatus} />
       <div className="container mx-auto flex min-h-screen flex-col px-3 lg:flex-row lg:px-0">
         <div className="lg:w-[60%]"></div>
         <div className="flex flex-col justify-center gap-2 lg:w-[40%] lg:gap-6">

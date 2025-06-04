@@ -3,14 +3,18 @@ import Input from "./Input";
 import Close from "./Close";
 import { useState } from "react";
 import { useFormik } from "formik";
+import Status from "./Status";
 
 type Props = {
   handleClose: () => void;
+  setStatus: React.Dispatch<
+    React.SetStateAction<"Loading" | "Success" | "Error" | undefined>
+  >;
+  status: "Loading" | "Success" | "Error" | undefined;
 };
 
-const Form: React.FC<Props> = ({ handleClose }) => {
+const Form: React.FC<Props> = ({ handleClose, setStatus, status }) => {
   const [isButtonDisable, setIsButtonDisable] = useState<boolean>(false);
-  const [status, setStatus] = useState<string>("");
 
   const formik = useFormik({
     initialValues: {
@@ -27,14 +31,16 @@ const Form: React.FC<Props> = ({ handleClose }) => {
     },
     onSubmit: async (values, { resetForm }) => {
       try {
+        setStatus("Loading");
         setIsButtonDisable(true);
         const response = await fetch("/api/godaddy-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(values),
         });
+        console.log(response);
         if (response.ok) {
-          setStatus("Send");
+          setStatus("Success");
           setTimeout(() => {
             handleClose();
             resetForm();
@@ -42,6 +48,7 @@ const Form: React.FC<Props> = ({ handleClose }) => {
           }, 2000);
         } else {
           setStatus("Error");
+          console.log(response);
         }
       } catch (err) {
         console.error(err);
@@ -173,13 +180,7 @@ const Form: React.FC<Props> = ({ handleClose }) => {
               id={`circle-about`}
             />
           </div>
-          {status === "Send" && (
-            <p className="text-primary col-span-2 text-center">
-              Your responses are held in confidence.
-              <br />
-              We do not share or disclose information under any circumstance.
-            </p>
-          )}
+          <Status status={status} />
           <button
             disabled={isButtonDisable}
             type="submit"
