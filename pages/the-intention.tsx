@@ -69,90 +69,117 @@ export default function TheIntention({
 
       const scrub = true;
 
-      const t1 = gsap.timeline({
-        scrollTrigger: {
-          trigger: ref1.current,
-          scrub,
-          start: () => (isMobile ? "40% 80%" : "top bottom"),
-          end: () => (isMobile ? "bottom 80%" : "bottom bottom"),
-          invalidateOnRefresh: true,
-        },
-      });
+      if (!isMobile) {
+        const t1 = gsap.timeline({
+          scrollTrigger: {
+            trigger: ref1.current,
+            scrub,
+            start: () => (isMobile ? "40% 80%" : "top bottom"),
+            end: () => (isMobile ? "bottom 80%" : "bottom bottom"),
+            invalidateOnRefresh: true,
+          },
+        });
 
-      const getWidth = () => {
-        if (screenWidth <= 768) return 0;
-        if (screenWidth <= 1440) return -250;
-        return -200;
-      };
+        const getWidth = () => {
+          if (screenWidth <= 768) return 0;
+          if (screenWidth <= 1440) return -250;
+          return -200;
+        };
 
-      t1.to(particles.position, {
-        x: getWidth,
-        ease: "power3.out",
-        immediateRender: false,
-      });
-
-      t1.to(
-        material.uniforms.uOpacity,
-        {
-          value: 1,
+        t1.to(particles.position, {
+          x: getWidth,
+          ease: "power3.out",
           immediateRender: false,
-        },
-        "<",
-      );
+        });
 
-      t1.to(
-        particles.rotation,
-        {
-          y: -Math.PI * 1,
-          immediateRender: false,
-        },
-        "<",
-      );
+        t1.to(
+          material.uniforms.uOpacity,
+          {
+            value: 1,
+            immediateRender: false,
+          },
+          "<",
+        );
 
-      const scale = isMobile ? 0.45 : 0.8;
-      t1.to(
-        particles.scale,
-        {
-          // y: -Math.PI,
-          x: scale,
-          y: scale,
-          z: scale,
-          immediateRender: false,
-        },
-        "<",
-      );
+        t1.to(
+          particles.rotation,
+          {
+            y: -Math.PI * 1,
+            immediateRender: false,
+          },
+          "<",
+        );
+
+        const scale = isMobile ? 0.45 : 0.8;
+        t1.to(
+          particles.scale,
+          {
+            // y: -Math.PI,
+            x: scale,
+            y: scale,
+            z: scale,
+            immediateRender: false,
+          },
+          "<",
+        );
+      }
 
       const t2 = gsap.timeline({
         scrollTrigger: {
           trigger: ref2.current,
           scrub,
-          // markers: true,
           end: "top 20%",
           invalidateOnRefresh: true,
         },
       });
 
-      const getX = () => {
-        if (screenWidth <= 768) return 0;
-        if (screenWidth <= 1440) return 250;
-        return 200;
-      };
-
-      t2.to(particles.position, {
-        x: getX,
-        ease: "power1.inOut",
-        immediateRender: false,
-      });
-
-      t2.to(
-        particles.rotation,
-        {
-          y: -Math.PI * 0.01,
+      if (isMobile) {
+        t2.to(particles.position, {
+          x: 0,
           ease: "power1.inOut",
           immediateRender: false,
-        },
-        "<",
-      );
+        });
+
+        t2.to(
+          material.uniforms.uOpacity,
+          {
+            value: 1,
+            immediateRender: false,
+          },
+          "<",
+        );
+
+        t2.to(
+          particles.rotation,
+          {
+            y: -Math.PI * 2,
+            immediateRender: false,
+          },
+          "<",
+        );
+      } else {
+        const getX = () => {
+          if (screenWidth <= 768) return 0;
+          if (screenWidth <= 1440) return 250;
+          return 200;
+        };
+
+        t2.to(particles.position, {
+          x: getX,
+          ease: "power1.inOut",
+          immediateRender: false,
+        });
+
+        t2.to(
+          particles.rotation,
+          {
+            y: -Math.PI * 0.01,
+            ease: "power1.inOut",
+            immediateRender: false,
+          },
+          "<",
+        );
+      }
 
       const t2Scale = isMobile ? 0.45 : 0.8;
       t2.to(
@@ -176,11 +203,15 @@ export default function TheIntention({
         },
       });
 
-      t3.to(particles.position, {
-        x: 0,
-        ease: "power1.inOut",
-        immediateRender: false,
-      });
+      t3.to(
+        particles.position,
+        {
+          x: 0,
+          ease: "power1.inOut",
+          immediateRender: false,
+        },
+        "<",
+      );
 
       t3.to(
         material.uniforms.uDisperse,
@@ -209,7 +240,6 @@ export default function TheIntention({
         ease: "power1.inOut",
         immediateRender: false,
       });
-
       t3.to(particles.position, {
         x: 0,
         ease: "power1.inOut",
