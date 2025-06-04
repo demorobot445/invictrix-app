@@ -30,7 +30,7 @@ const Partners: React.FC<Props> = ({ heading, description, partners }) => {
               height={400}
               width={400}
               style={{ transform: randomTransform }}
-              className="cursor-pointer object-contain grayscale-100 transition duration-700 hover:grayscale-0 lg:w-[150px] 2xl:w-[200px]"
+              className="cursor-pointer object-contain transition duration-700 hover:grayscale-0 lg:w-[150px] lg:grayscale-100 2xl:w-[200px]"
             />
           );
         })}

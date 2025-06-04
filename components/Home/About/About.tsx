@@ -79,7 +79,7 @@ const About: React.FC<Props> = ({ video }) => {
           onClick={handleClick}
           className="text-dark absolute top-1/2 left-1/2 z-20 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-[url('/about/valvet.jpg')] bg-cover bg-center bg-no-repeat text-sm uppercase invert-100"
         >
-          watch !
+          watch!
         </button>
       </div>
       <div className="flex w-full"></div>

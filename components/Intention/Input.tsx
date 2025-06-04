@@ -23,7 +23,7 @@ const Input: React.FC<Props> = ({
       <input
         onChange={onChange}
         value={value}
-        className="border-primary border p-1 text-white placeholder:text-[#7f7f7f] focus:outline-none"
+        className="border-primary text-dark-primary border p-1 placeholder:text-[#7f7f7f] focus:outline-none"
         placeholder={placeholder}
         required
         id={name}

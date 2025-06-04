@@ -71,14 +71,14 @@ const Form: React.FC<Props> = ({ handleClose, setStatus, status }) => {
         </button>
         <Image src="/monogram.png" height={200} width={200} alt="monogram" />
         <div>
-          <h1 className="font-display text-center text-2xl font-bold text-white">
+          <h1 className="font-display text-dark-primary text-center text-2xl font-bold">
             BEGIN WITH INTENTION
           </h1>
-          <p className="text-primary font-display text-center font-bold italic">
+          <p className="font-display text-center font-bold text-white">
             This is the beginning of a considered connection
           </p>
         </div>
-        <p className="font-display mt-5 text-center font-bold text-white">
+        <p className="mt-5 text-center font-bold text-white">
           We invite you to respond. If your vision aligns. you will hear from us
           directly.
         </p>
@@ -148,7 +148,7 @@ const Form: React.FC<Props> = ({ handleClose, setStatus, status }) => {
               name="discoverInvictrix"
               onChange={formik.handleChange}
               value={formik.values.discoverInvictrix}
-              className="border-primary border p-1 text-white placeholder:text-[#7f7f7f] focus:outline-none"
+              className="border-primary text-dark-primary border p-1 placeholder:text-[#7f7f7f] focus:outline-none"
               placeholder={"Referral, events, or article mention…"}
               id={`circle-discover-invictrix`}
             />
@@ -157,6 +157,7 @@ const Form: React.FC<Props> = ({ handleClose, setStatus, status }) => {
             onChange={formik.handleChange}
             value={formik.values.number}
             label="Phone Number"
+            type="number"
             name="number"
             placeholder="Should we need to connect by voice"
           />
@@ -173,7 +174,7 @@ const Form: React.FC<Props> = ({ handleClose, setStatus, status }) => {
               onChange={formik.handleChange}
               value={formik.values.about}
               name="about"
-              className="border-primary border p-1 text-white placeholder:text-[#7f7f7f] focus:outline-none"
+              className="border-primary text-dark-primary border p-1 placeholder:text-[#7f7f7f] focus:outline-none"
               placeholder={
                 "Share what brings you here and how Invictrix may support your journey…."
               }
