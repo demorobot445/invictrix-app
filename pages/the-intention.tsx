@@ -171,7 +171,6 @@ export default function TheIntention({
         scrollTrigger: {
           trigger: ref3.current,
           scrub,
-          // markers: true,
           invalidateOnRefresh: true,
           end: "80% bottom",
         },
@@ -186,7 +185,7 @@ export default function TheIntention({
       t3.to(
         material.uniforms.uDisperse,
         {
-          value: 1,
+          value: 0,
           ease: "power1.inOut",
           immediateRender: false,
           onUpdate: () => {
