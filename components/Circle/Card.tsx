@@ -37,7 +37,7 @@ const Card: React.FC<Props> = ({
           {heading}
         </h1>
         <p
-          className={`scroll-content-${index} font-display -mt-2 mb-4 text-xs text-black opacity-0 lg:text-base`}
+          className={`scroll-content-${index} font-display -mt-2 mb-4 text-lg text-black opacity-0 lg:text-xl`}
         >
           {subHeading}
         </p>
@@ -62,7 +62,7 @@ const Card: React.FC<Props> = ({
           {description}
         </p>
         <p
-          className={`scroll-content-${index} text-dark-primary font-display mt-4 opacity-0 lg:text-2xl`}
+          className={`scroll-content-${index} text-dark-primary font-display mt-4 text-2xl opacity-0 lg:mt-0 lg:text-4xl`}
         >
           {closeLine}
         </p>

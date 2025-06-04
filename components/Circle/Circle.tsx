@@ -147,16 +147,16 @@ const Circle: React.FC<Props> = ({
       className="relative h-lvh w-full overflow-hidden bg-white perspective-dramatic"
     >
       <div className="content absolute top-1/2 left-1/2 z-20 flex h-fit w-fit min-w-[320px] -translate-1/2 flex-col items-center justify-center gap-4 bg-black/80 p-3 lg:min-w-[1000px] lg:p-20">
-        <h1 className="font-display text-center text-4xl text-white lg:text-6xl">
+        <h1 className="font-display text-dark-primary text-center text-4xl lg:text-6xl">
           {contents[0].heading}
         </h1>
-        <h2 className="text-dark-primary font-display text-center text-xl lg:text-2xl">
+        <h2 className="font-display text-center text-xl text-white lg:text-2xl">
           {contents[0].paragraphOne}
         </h2>
-        <p className="text-center text-xl text-white lg:text-2xl">
+        <p className="text-center text-xl text-white">
           {contents[0].paragraphTwo}
         </p>
-        <h3 className="font-display text-xl text-white lg:text-2xl">
+        <h3 className="font-display text-dark-primary text-xl lg:text-4xl">
           {contents[0].paragraphThree}
         </h3>
         <button

@@ -98,8 +98,8 @@ export default function Home({
         ScrollTrigger.create({
           toggleActions: "play none none reverse",
           animation,
-          start: "center bottom",
-          trigger: ".about-video",
+          start: "20% bottom",
+          trigger: ".reveal-section",
         });
       }
 
