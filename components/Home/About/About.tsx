@@ -72,6 +72,7 @@ const About: React.FC<Props> = ({ video }) => {
         <video
           ref={videoRef}
           className="about-video h-[580px] w-full object-cover"
+          poster="/video-poster.png"
         >
           <source src={video.url} />
         </video>
