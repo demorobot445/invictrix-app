@@ -20,6 +20,9 @@ export const HOMEPAGE_QUERY = `
         video {
           url
         }
+        videoPoster {
+        url
+        }
       }
       essenceHeading {
         headingFirstPart

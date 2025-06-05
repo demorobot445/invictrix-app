@@ -12,15 +12,16 @@ export interface HomeSectionTwo {
   paragraphTwo: string;
 }
 
+export interface Media {
+  url: string;
+}
+
 export interface HomeSectionThree {
   id: string;
   heading: string;
   paragraph: string;
-  video: Video;
-}
-
-export interface Video {
-  url: string;
+  video: Media;
+  videoPoster: Media;
 }
 
 export interface EssenceHeading {
@@ -44,7 +45,7 @@ export interface EssenceRightSide {
 
 export interface Essence {
   hightlightText: string;
-  video: Video;
+  video: Media;
   leftSide: EssenceLeftSide;
   rightSide: EssenceRightSide;
 }

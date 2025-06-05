@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 
 type Props = HomeSectionThree & {};
 
-const About: React.FC<Props> = ({ video }) => {
+const About: React.FC<Props> = ({ video, videoPoster }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleClick = () => {
@@ -72,7 +72,7 @@ const About: React.FC<Props> = ({ video }) => {
         <video
           ref={videoRef}
           className="about-video h-[580px] w-full object-cover"
-          poster="/video-poster.png"
+          poster={videoPoster.url}
         >
           <source src={video.url} />
         </video>
